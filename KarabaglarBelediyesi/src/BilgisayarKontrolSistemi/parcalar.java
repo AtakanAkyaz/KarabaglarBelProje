@@ -1,6 +1,10 @@
 package BilgisayarKontrolSistemi;
 
 public class parcalar {
+	/*
+	 anaKart , gucUnitesi , ram , ekranKarti , islemci , saklamaAlani parcalar ın child ı
+	 hdd ve ssd saklama alanının child ı 
+	*/
 
 	int seriNo , ay , yıl;
 	String marka;

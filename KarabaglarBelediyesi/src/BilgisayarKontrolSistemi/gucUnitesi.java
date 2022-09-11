@@ -1,15 +1,37 @@
 package BilgisayarKontrolSistemi;
 
+public class gucUnitesi extends parcalar{
+	double watt ;
+	
 
-public class anaKart extends parcalar{
-	int numara;
-
-	public int getNumara() {
-		return numara;	
+	public double getWatt() {
+		return watt;
 	}
 
-	public void setNumara(int numara) {
-		this.numara = numara;
+	public void setWatt(double watt) {
+		try {
+			if(watt < 0 ) {
+				throw new Exception("Watt 0 dan küçük olamaz");
+			}
+			else {
+				this.watt = watt;
+			}
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+	}
+
+	@Override
+	public String getMarka() {
+		// TODO Auto-generated method stub
+		return super.getMarka();
+	}
+
+	@Override
+	public void setMarka(String marka) {
+		// TODO Auto-generated method stub
+		super.setMarka(marka);
 	}
 
 	@Override
@@ -19,9 +41,9 @@ public class anaKart extends parcalar{
 	}
 
 	@Override
-	public void setSeriNo(int numara) {
+	public void setSeriNo(int seriNo) {
 		// TODO Auto-generated method stub
-		super.setSeriNo(numara);
+		super.setSeriNo(seriNo);
 	}
 
 	@Override
@@ -47,4 +69,5 @@ public class anaKart extends parcalar{
 		// TODO Auto-generated method stub
 		super.setYıl(yıl);
 	}
+	
 }

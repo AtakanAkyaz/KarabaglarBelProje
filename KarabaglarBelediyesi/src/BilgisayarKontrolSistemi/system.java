@@ -12,18 +12,27 @@ public class system {
 		System.out.println("Şifrenizi Giriniz : ");
 		int Şifre = scan.nextInt();
 		*/
-		/*
-		parcalar pan = new anaKart();
-		System.out.println(pan.getNumara());
-		pan.setNumara(-2);
-		System.out.println(pan.getNumara());
-		*/
-		/*
-		String marka = null ;
-		parcalar par = new parcalar();
-		par.setMarka(marka);
-		System.out.println();
-		*/
+		
+//		//***Anakart Deneme***
+//		anaKart örnek = new anaKart();
+//		System.out.println(örnek.getNumara());
+//		örnek.setNumara(-2);
+//		System.out.println(örnek.getNumara());
+		
+		
+//		//***Güç Ünitesi Deneme***
+//		gucUnitesi örnek = new gucUnitesi();
+//		System.out.println(örnek.getWatt());
+//		örnek.setWatt(200);
+//		System.out.println(örnek.getWatt());
+		
+//		//***RAM Deneme***
+//		ram örnek = new ram();
+//		System.out.println(örnek.getWatt());
+//		örnek.setWatt(200);
+//		System.out.println(örnek.getWatt());
+		 
+		
 		String depoKullanıcıAdi = "Atakan";
 		String depoSifre = "123";
 		boolean flag = true ;
