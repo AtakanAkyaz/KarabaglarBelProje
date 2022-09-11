@@ -32,6 +32,11 @@ public class system {
 //		örnek.setWatt(200);
 //		System.out.println(örnek.getWatt());
 		 
+		//***Güç Ünitesi Deneme***
+//		gucUnitesi pan = new gucUnitesi();
+//		System.out.println(pan.getWatt());
+//		pan.setWatt(200);
+//		System.out.println(pan.getWatt());
 		
 		String depoKullanıcıAdi = "Atakan";
 		String depoSifre = "123";
