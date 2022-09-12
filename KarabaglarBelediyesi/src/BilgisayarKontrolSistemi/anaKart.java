@@ -2,14 +2,41 @@ package BilgisayarKontrolSistemi;
 
 
 public class anaKart extends parcalar{
-	int numara;
+	int ramSoketSayisi , driverSoketSayisi;
 
-	public int getNumara() {
-		return numara;	
+	public anaKart(int seriNo, int degisimAyi, int degisimYili, String marka, int ramSoketSayisi,
+			int driverSoketSayisi) {
+		super(seriNo, degisimAyi, degisimYili, marka);
+		this.ramSoketSayisi = ramSoketSayisi;
+		this.driverSoketSayisi = driverSoketSayisi;
 	}
 
-	public void setNumara(int numara) {
-		this.numara = numara;
+	public int getRamSoketSayisi() {
+		return ramSoketSayisi;
+	}
+
+	public void setRamSoketSayisi(int ramSoketSayisi) {
+		this.ramSoketSayisi = ramSoketSayisi;
+	}
+
+	public int getDriverSoketSayisi() {
+		return driverSoketSayisi;
+	}
+
+	public void setDriverSoketSayisi(int driverSoketSayisi) {
+		this.driverSoketSayisi = driverSoketSayisi;
+	}
+
+	@Override
+	public String getMarka() {
+		// TODO Auto-generated method stub
+		return super.getMarka();
+	}
+
+	@Override
+	public void setMarka(String marka) {
+		// TODO Auto-generated method stub
+		super.setMarka(marka);
 	}
 
 	@Override
@@ -19,9 +46,9 @@ public class anaKart extends parcalar{
 	}
 
 	@Override
-	public void setSeriNo(int numara) {
+	public void setSeriNo(int seriNo) {
 		// TODO Auto-generated method stub
-		super.setSeriNo(numara);
+		super.setSeriNo(seriNo);
 	}
 
 	@Override
@@ -31,9 +58,9 @@ public class anaKart extends parcalar{
 	}
 
 	@Override
-	public void setAy(int ay) {
+	public void setAy(int degisimAyi) {
 		// TODO Auto-generated method stub
-		super.setAy(ay);
+		super.setAy(degisimAyi);
 	}
 
 	@Override
@@ -43,8 +70,10 @@ public class anaKart extends parcalar{
 	}
 
 	@Override
-	public void setYıl(int yıl) {
+	public void setYıl(int degisimYili) {
 		// TODO Auto-generated method stub
-		super.setYıl(yıl);
+		super.setYıl(degisimYili);
 	}
+
+	
 }

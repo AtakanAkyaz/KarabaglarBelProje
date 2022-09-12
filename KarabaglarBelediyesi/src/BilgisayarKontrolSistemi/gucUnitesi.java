@@ -4,8 +4,19 @@ public class gucUnitesi extends parcalar{
 	double watt ;
 	
 
+	@Override
+	public void printInformation() {
+		// TODO Auto-generated method stub
+		super.printInformation();
+	}
+
 	public double getWatt() {
 		return watt;
+	}
+
+	public gucUnitesi(int seriNo, int degisimAyi, int degisimYili, String marka, double watt) {
+		super(seriNo, degisimAyi, degisimYili, marka);
+		this.watt = watt;
 	}
 
 	public void setWatt(double watt) {

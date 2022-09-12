@@ -5,9 +5,15 @@ public class parcalar {
 	 anaKart , gucUnitesi , ram , ekranKarti , islemci , saklamaAlani parcalar ın child ı
 	 hdd ve ssd saklama alanının child ı 
 	*/
-
-	int seriNo , ay , yıl;
 	String marka;
+	int seriNo , degisimAyi , degisimYili;
+	public parcalar(int seriNo, int degisimAyi, int degisimYili, String marka) {
+		this.seriNo = seriNo;
+		this.degisimAyi = degisimAyi;
+		this.degisimYili = degisimYili;
+		this.marka = marka;
+	}
+
 	public String getMarka() {
 		return marka;
 	}
@@ -44,19 +50,19 @@ public class parcalar {
 	}
 
 	public int getAy() {
-		return ay;
+		return degisimAyi;
 	}
 
-	public void setAy(int ay) {
+	public void setAy(int degisimAyi) {
 		try {
-			if(ay < 1) {
+			if(degisimAyi < 1) {
 				throw new Exception("Ay 0 dan küçük olamaz");
 			}
-			else if(ay > 12) {
+			else if(degisimAyi > 12) {
 				throw new Exception("Ay 12 den fazla olamaz");
 			}
 			else {
-				this.ay = ay;
+				this.degisimAyi = degisimAyi;
 			}
 		}catch(Exception e) {
 			System.out.println(e);
@@ -65,22 +71,27 @@ public class parcalar {
 	}
 
 	public int getYıl() {
-		return yıl;
+		return degisimYili;
 	}
 
-	public void setYıl(int yıl) {
+	public void setYıl(int degisimYili) {
 		try{
-			if(yıl < 1990) {
+			if(degisimYili < 1990) {
 				throw new Exception("Yıl 1990 den küçük olamaz");
 			}
-			else if(yıl > 2100) {
+			else if(degisimYili > 2100) {
 				throw new Exception("Yıl 2100 den fazla olamaz");
 			}
 			else {
-				this.yıl = yıl;
+				this.degisimYili = degisimYili;
 			}
 		}catch(Exception e){
 			System.out.println(e);
 		}
 	}
-}
+	
+	public void printInformation() {
+		System.out.println("Seri No : " + seriNo + "\nMarka : " + marka + "\nDeğişim yılı : " + degisimYili + "\nDeğişim ayı : " + degisimAyi);
+		
+	}
+} 
