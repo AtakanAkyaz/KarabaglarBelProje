@@ -1,11 +1,15 @@
 package BilgisayarKontrolSistemi;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class system {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		
+		baglanti bag = new baglanti();
+		
 		
 		parcalar AnaKart = new anaKart(3708 , 9 , 2022 , "ipiel" , 4 , 2 );
 		ekranKarti EkranKartı = new ekranKarti(1937 , 8 , 2020 , "nvidia" , true , 2000 );
