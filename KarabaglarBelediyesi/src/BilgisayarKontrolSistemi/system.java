@@ -8,16 +8,12 @@ public class system {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
-		baglanti bag = new baglanti();
-		
-		
-		parcalar AnaKart = new anaKart(3708 , 9 , 2022 , "ipiel" , 4 , 2 );
-		ekranKarti EkranKartı = new ekranKarti(1937 , 8 , 2020 , "nvidia" , true , 2000 );
-		
-		kasa kasa1 = new kasa(AnaKart , EkranKartı);
-		
-		AnaKart.printInformation();
-		EkranKartı.printInformation();
+		//baglanti bag = new baglanti();
+// Exception atması durumunda tekrar işlemi tekrarlamak için anaKart.java 22-36 bak. Yukarda scanner da eklendi
+//		anaKart an = new anaKart();
+//		System.out.println("Bir sayı giriniz");
+//		int girdi = scan.nextInt();
+//		an.setRamSoketSayisi(girdi);
 
 // 35- 46 ileride kalkıcak ve database den kontrol edilicek
 // Buradan
