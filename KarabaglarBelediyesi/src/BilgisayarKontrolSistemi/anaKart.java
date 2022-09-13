@@ -1,11 +1,15 @@
 package BilgisayarKontrolSistemi;
 
+import java.util.Scanner;
 
 public class anaKart extends parcalar{
+	Scanner scan = new Scanner(System.in);
 	int ramSoketSayisi , driverSoketSayisi;
 
-	public anaKart(int seriNo, int degisimAyi, int degisimYili, String marka, int ramSoketSayisi,
-			int driverSoketSayisi) {
+	public anaKart() {
+		
+	}
+	public anaKart(int seriNo, int degisimAyi, int degisimYili, String marka, int ramSoketSayisi, int driverSoketSayisi) {
 		super(seriNo, degisimAyi, degisimYili, marka);
 		this.ramSoketSayisi = ramSoketSayisi;
 		this.driverSoketSayisi = driverSoketSayisi;
@@ -16,7 +20,18 @@ public class anaKart extends parcalar{
 	}
 
 	public void setRamSoketSayisi(int ramSoketSayisi) {
-		this.ramSoketSayisi = ramSoketSayisi;
+			try {
+					if(ramSoketSayisi < 0) {
+						throw new Exception("Ram soket sayısı 0 dan küçük olamaz");
+					}else {
+						this.ramSoketSayisi = ramSoketSayisi;
+					}			
+		} catch (Exception e) {
+			System.out.println(e);
+			System.out.println("Tekrar bir sayı giriniz");
+			ramSoketSayisi = scan.nextInt();
+			setRamSoketSayisi(ramSoketSayisi);
+		}
 	}
 
 	public int getDriverSoketSayisi() {
@@ -24,7 +39,15 @@ public class anaKart extends parcalar{
 	}
 
 	public void setDriverSoketSayisi(int driverSoketSayisi) {
-		this.driverSoketSayisi = driverSoketSayisi;
+		try {
+			if(driverSoketSayisi < 0) {
+				throw new Exception("Driver soket sayısı 0 dan küçük olamaz");
+			}else {
+				this.driverSoketSayisi = driverSoketSayisi;	
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	@Override

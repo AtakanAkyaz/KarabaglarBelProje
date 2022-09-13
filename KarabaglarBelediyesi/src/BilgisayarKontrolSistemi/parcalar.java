@@ -7,6 +7,9 @@ public class parcalar {
 	*/
 	String marka;
 	int seriNo , degisimAyi , degisimYili;
+	public parcalar() {
+		
+	}
 	public parcalar(int seriNo, int degisimAyi, int degisimYili, String marka) {
 		this.seriNo = seriNo;
 		this.degisimAyi = degisimAyi;

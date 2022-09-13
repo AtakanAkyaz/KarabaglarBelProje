@@ -2,9 +2,19 @@ package BilgisayarKontrolSistemi;
 
 public class islemci extends parcalar{
 
-	public islemci(int seriNo, int degisimAyi, int degisimYili, String marka) {
+	double hiz ;
+	
+	public islemci(int seriNo, int degisimAyi, int degisimYili, String marka, double hiz) {
 		super(seriNo, degisimAyi, degisimYili, marka);
-		// TODO Auto-generated constructor stub
+		this.hiz = hiz;
+	}
+
+	public double getHiz() {
+		return hiz;
+	}
+
+	public void setHiz(double hiz) {
+		this.hiz = hiz;
 	}
 
 	@Override
