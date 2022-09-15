@@ -3,6 +3,10 @@ package BilgisayarKontrolSistemi;
 public class hdd extends saklamaAlani{
 
 	String tip = "HDD";
+	
+	public hdd() {
+		
+	}
 
 	public hdd(int seriNo, int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
 			int okumaHizi, String tip) {
@@ -104,6 +108,7 @@ public class hdd extends saklamaAlani{
 	public void printInformation() {
 		// TODO Auto-generated method stub
 		super.printInformation();
+		System.out.println("Saklama alanı tipi : " + tip);
 	}
 	
 	

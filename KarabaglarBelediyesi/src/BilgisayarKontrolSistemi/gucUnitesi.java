@@ -2,13 +2,6 @@ package BilgisayarKontrolSistemi;
 
 public class gucUnitesi extends parcalar{
 	double watt ;
-	
-
-	@Override
-	public void printInformation() {
-		// TODO Auto-generated method stub
-		super.printInformation();
-	}
 
 	public double getWatt() {
 		return watt;
@@ -30,6 +23,9 @@ public class gucUnitesi extends parcalar{
 		}
 		catch(Exception e){
 			System.out.println(e);
+			System.out.println("Tekrar güç ünitesi için watt giriniz");
+			watt = scan.nextDouble();
+			setWatt(watt);
 		}
 	}
 
@@ -79,6 +75,14 @@ public class gucUnitesi extends parcalar{
 	public void setYıl(int yıl) {
 		// TODO Auto-generated method stub
 		super.setYıl(yıl);
+	}
+	
+
+	@Override
+	public void printInformation() {
+		// TODO Auto-generated method stub
+		super.printInformation();
+		System.out.println("Güç ünitesinin watt'ı : " + watt);
 	}
 	
 }

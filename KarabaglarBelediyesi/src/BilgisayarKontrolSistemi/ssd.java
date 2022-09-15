@@ -104,7 +104,9 @@ public class ssd extends saklamaAlani{
 	public void printInformation() {
 		// TODO Auto-generated method stub
 		super.printInformation();
+		System.out.println("Saklama alanı tipi : " + tip);
 	}
+	
 	
 	
 

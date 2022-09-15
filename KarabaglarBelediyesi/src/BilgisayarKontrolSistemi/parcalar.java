@@ -1,6 +1,9 @@
 package BilgisayarKontrolSistemi;
 
+import java.util.Scanner;
+
 public class parcalar {
+	Scanner scan = new Scanner(System.in);
 	/*
 	 anaKart , gucUnitesi , ram , ekranKarti , islemci , saklamaAlani parcalar ın child ı
 	 hdd ve ssd saklama alanının child ı 
@@ -23,7 +26,7 @@ public class parcalar {
 
 	public void setMarka(String marka) {
 		try {
-			if(marka ==  null) {
+			if(marka ==  "") {
 				throw new Exception("Marka kısmı boş olamaz");
 			}
 			else {
@@ -31,6 +34,9 @@ public class parcalar {
 			}
 		}catch(Exception e) {
 			System.out.println(e);
+			System.out.println("Tekrar bir marka giriniz");
+			marka = scan.next();
+			setMarka(marka);
 		}
 	}
 
@@ -49,6 +55,9 @@ public class parcalar {
 		}
 		catch(Exception e){
 			System.out.println(e);
+			System.out.println("Tekrar bir seri numarası giriniz");
+			seriNo = scan.nextInt();
+			setSeriNo(seriNo);
 		}
 	}
 
@@ -69,6 +78,9 @@ public class parcalar {
 			}
 		}catch(Exception e) {
 			System.out.println(e);
+			System.out.println("Tekrar bir ay giriniz");
+			int ay = scan.nextInt();
+			setAy(ay);
 		}
 		
 	}
@@ -90,6 +102,9 @@ public class parcalar {
 			}
 		}catch(Exception e){
 			System.out.println(e);
+			System.out.println("Tekrar bir yıl giriniz");
+			int yıl = scan.nextInt();
+			setYıl(yıl);
 		}
 	}
 	

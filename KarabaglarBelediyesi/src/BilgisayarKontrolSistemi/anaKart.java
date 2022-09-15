@@ -3,7 +3,6 @@ package BilgisayarKontrolSistemi;
 import java.util.Scanner;
 
 public class anaKart extends parcalar{
-	Scanner scan = new Scanner(System.in);
 	int ramSoketSayisi , driverSoketSayisi;
 
 	public anaKart() {
@@ -28,7 +27,7 @@ public class anaKart extends parcalar{
 					}			
 		} catch (Exception e) {
 			System.out.println(e);
-			System.out.println("Tekrar bir sayı giriniz");
+			System.out.println("Tekrar bir ram soket sayısı giriniz");
 			ramSoketSayisi = scan.nextInt();
 			setRamSoketSayisi(ramSoketSayisi);
 		}
@@ -47,6 +46,9 @@ public class anaKart extends parcalar{
 			}
 		} catch (Exception e) {
 			System.out.println(e);
+			System.out.println("Tekrar bir driver soket sayısı giriniz");
+			driverSoketSayisi = scan.nextInt();
+			setDriverSoketSayisi(driverSoketSayisi);
 		}
 	}
 
@@ -97,6 +99,14 @@ public class anaKart extends parcalar{
 		// TODO Auto-generated method stub
 		super.setYıl(degisimYili);
 	}
+	@Override
+	public void printInformation() {
+		// TODO Auto-generated method stub
+		super.printInformation();
+		System.out.println("Ram soket sayısı : " + ramSoketSayisi + "\nDriver soket sayısı : " + driverSoketSayisi);
+	}
+	
+	
 
 	
 }

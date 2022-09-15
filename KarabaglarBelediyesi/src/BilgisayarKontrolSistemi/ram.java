@@ -15,7 +15,16 @@ public class ram extends parcalar{
 	}
 
 	public void setDdr(int ddr) {
-		this.ddr = ddr;
+		try {
+			if(ddr < 0) {
+				throw new Exception("DDR 0 dan küçük olamaz");
+			}
+		}catch(Exception e){
+			System.out.println(e);
+			System.out.println("Tekrar bir DDR değeri giriniz");
+			ddr = scan.nextInt();
+			setDdr(ddr);
+		}
 	}
 
 	public int getHiz() {
@@ -23,7 +32,19 @@ public class ram extends parcalar{
 	}
 
 	public void setHiz(int hiz) {
-		this.hiz = hiz;
+		try {
+			if(hiz < 0) {
+				System.out.println("Ram hız 0 dan küçük olamaz");
+			}
+			else {
+				this.hiz = hiz;
+			}
+		}catch(Exception e){
+			System.out.println(e);
+			System.out.println("Tekrar bir ram hızı giriniz");
+			hiz = scan.nextInt();
+			setHiz(hiz);
+		}
 	}
 
 	@Override
@@ -78,7 +99,9 @@ public class ram extends parcalar{
 	public void printInformation() {
 		// TODO Auto-generated method stub
 		super.printInformation();
+		System.out.println("DDR tipi : DDR" + ddr + "\nRam hızı : " + hiz);
 	}
+	
 	
 	
 }

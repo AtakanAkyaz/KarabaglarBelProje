@@ -14,7 +14,18 @@ public class islemci extends parcalar{
 	}
 
 	public void setHiz(double hiz) {
-		this.hiz = hiz;
+		try {
+			if(hiz < 0) {
+				throw new Exception("İşlemci hızı 0 dan küçük olamaz");
+			}else {
+				this.hiz = hiz;
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+			System.out.println("Tekrar bir işlemci hızı giriniz");
+			hiz = scan.nextDouble();
+			setHiz(hiz);
+		}
 	}
 
 	@Override
@@ -69,6 +80,7 @@ public class islemci extends parcalar{
 	public void printInformation() {
 		// TODO Auto-generated method stub
 		super.printInformation();
+		System.out.println("işlemcinin hızı : " + hiz);
 	}
 
 }

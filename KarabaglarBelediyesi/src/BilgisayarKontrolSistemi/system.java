@@ -3,26 +3,56 @@ package BilgisayarKontrolSistemi;
 import java.sql.Connection;
 import java.util.Scanner;
 
-public class system {
+public class system { 
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
 		//baglanti bag = new baglanti();
-// Exception atması durumunda tekrar işlemi tekrarlamak için anaKart.java 22-36 bak. Yukarda scanner da eklendi
+		
+ //Exception atması durumunda işlemi tekrarlamak için anaKart.java 22-36 bak. Yukarda scanner da eklendi
 //		anaKart an = new anaKart();
+//		System.out.println("marka");
+//		String marka = scan.nextLine();
+//		an.setMarka(marka);
 //		System.out.println("Bir sayı giriniz");
 //		int girdi = scan.nextInt();
-//		an.setRamSoketSayisi(girdi);
+//		an.setSeriNo(girdi);
+//		System.out.println("Bir sayı giriniz");
+//		int gird1 = scan.nextInt();
+//		an.setAy(gird1);
+//		System.out.println("Bir sayı giriniz");
+//		int gird2 = scan.nextInt();
+//		an.setYıl(gird2);
+//		System.out.println("Bir sayı giriniz");
+//		int gird3 = scan.nextInt();
+//		an.setRamSoketSayisi(gird3);
+//		System.out.println("Bir sayı giriniz");
+//		int girdi4 = scan.nextInt();
+//		an.setDriverSoketSayisi(girdi4);
+//
+//		an.printInformation();
+//		scan.nextLine(); // 30. satırdaki scan.nextInt() den sonra gelen .nextLine() java üzerinde çalışmadığı için 1 tane boş .nextLine() atılı
+//		System.out.println("Bir marka giriniz");
+//		String mark = scan.nextLine();
+//		an.setMarka(mark);
+		
+		
+		parcalar par = new parcalar();
+		int a = scan.nextInt();
+		par.setSeriNo(a);
+		String b = scan.next();
+		par.setMarka(b);
+		par.printInformation();
 
-// 35- 46 ileride kalkıcak ve database den kontrol edilicek
+// 41- 52 ileride kalkıcak ve database den kontrol edilicek
 // Buradan
 		kullanici kullanici1 = new kullanici();
 		kullanici1.setFlag(false);
 		kullanici kullanici2 = new kullanici();
 		kullanici2.setFlag(true);
 		
-		 
+		
 		String adminDepoKullanıcıAdi = "kBel";
 		String adminDepoSifre = "@dm!N123";
 		

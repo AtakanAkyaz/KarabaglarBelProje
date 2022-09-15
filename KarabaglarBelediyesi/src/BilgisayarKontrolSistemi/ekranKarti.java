@@ -3,41 +3,40 @@ package BilgisayarKontrolSistemi;
 public class ekranKarti extends parcalar{
 
 // bellek tipi (false = harici ) / (true = dahili) 
-	boolean bellkeTipi;
-	int bellkeBoyutu;
-	public ekranKarti(int seriNo, int degisimAyi, int degisimYili, String marka, boolean bellkeTipi, int bellkeBoyutu) {
+	boolean bellekTipi;
+	int bellekBoyutu;
+	public ekranKarti(int seriNo, int degisimAyi, int degisimYili, String marka, boolean bellekTipi, int bellekBoyutu) {
 		super(seriNo, degisimAyi, degisimYili, marka);
-		this.bellkeTipi = bellkeTipi;
-		this.bellkeBoyutu = bellkeBoyutu;
+		this.bellekTipi = bellekTipi;
+		this.bellekBoyutu = bellekBoyutu;
 	}
-	
-	@Override
-	public void printInformation() {
-		// TODO Auto-generated method stub
-		super.printInformation();
-		String bellekTipiPrint;
-		if(bellkeTipi == false) {
-			bellekTipiPrint = "Harici";
-		}else {
-			bellekTipiPrint = "Dahili";
+
+	public boolean isBellekTipi() {
+		return bellekTipi;
+	}
+
+	public void setBellekTipi(boolean bellekTipi) {
+		System.out.println("Burayı siliceksin // bellek tipi için true veya false al ekrankartı.java 5 ");
+		this.bellekTipi = bellekTipi;
+	}
+
+	public int getBellekBoyutu() {
+		return bellekBoyutu;
+	}
+
+	public void setBellekBoyutu(int bellekBoyutu) {
+		try {
+			if(bellekBoyutu < 0) {
+				throw new Exception("Bellke boyutunuz 0 dan küçük olamaz");
+			}else {
+				this.bellekBoyutu = bellekBoyutu;
+			}
+		}catch(Exception e){
+			System.out.println(e);
+			System.out.println("Tekrar bir bellek boyutu giriniz");
+			bellekBoyutu = scan.nextInt();
+			setBellekBoyutu(bellekBoyutu);
 		}
-		System.out.println("Bellke tipi : " + bellekTipiPrint + "\nBellek boyutu : " + bellkeBoyutu);
-	}
-
-	public boolean isBellkeTipi() {
-		return bellkeTipi;
-	}
-
-	public void setBellkeTipi(boolean bellkeTipi) {
-		this.bellkeTipi = bellkeTipi;
-	}
-
-	public int getBellkeBoyutu() {
-		return bellkeBoyutu;
-	}
-
-	public void setBellkeBoyutu(int bellkeBoyutu) {
-		this.bellkeBoyutu = bellkeBoyutu;
 	}
 
 	@Override
@@ -79,6 +78,19 @@ public class ekranKarti extends parcalar{
 	public void setYıl(int degisimYili) {
 		// TODO Auto-generated method stub
 		super.setYıl(degisimYili);
+	}
+	
+	@Override
+	public void printInformation() {
+		// TODO Auto-generated method stub
+		super.printInformation();
+		String bellekTipiPrint;
+		if(bellekTipi == false) {
+			bellekTipiPrint = "Harici";
+		}else {
+			bellekTipiPrint = "Dahili";
+		}
+		System.out.println("Bellek tipi : " + bellekTipiPrint + "\nBellek boyutu : " + bellekBoyutu);
 	}
 	
 	

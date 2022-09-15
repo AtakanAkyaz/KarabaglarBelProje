@@ -4,6 +4,9 @@ public class saklamaAlani extends parcalar{
 
 	int depolamaAlani , yazmaHizi , okumaHizi;
 
+	public saklamaAlani() {
+		
+	}
 	public saklamaAlani(int seriNo, int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
 			int okumaHizi) {
 		super(seriNo, degisimAyi, degisimYili, marka);
@@ -17,7 +20,18 @@ public class saklamaAlani extends parcalar{
 	}
 
 	public void setYazmaHizi(int yazmaHizi) {
-		this.yazmaHizi = yazmaHizi;
+		try {
+			if(yazmaHizi < 0) {
+				throw new Exception("Yazma hızı 0 dan küçük olamaz // yazma hızını kb üzerinden hesapla");
+			}else {
+				this.yazmaHizi = yazmaHizi;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			System.out.println("Tekrar bir yazma hızı giriniz // kb üzerinden hesaplanıcak");
+			yazmaHizi = scan.nextInt();
+			setYazmaHizi(yazmaHizi);
+		}
 	}
 
 	public int getOkumaHizi() {
@@ -25,7 +39,18 @@ public class saklamaAlani extends parcalar{
 	}
 
 	public void setOkumaHizi(int okumaHizi) {
-		this.okumaHizi = okumaHizi;
+		try {
+			if(okumaHizi < 0) {
+				throw new Exception("Okuma hızı 0 dan küçük olamaz // okuma hızını kb üzerinden hesapla");
+			}else {
+				this.okumaHizi = okumaHizi;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			System.out.println("Tekrar bir okuma hızı giriniz // kb üzerinden hesaplanıcak");
+			okumaHizi = scan.nextInt();
+			setYazmaHizi(okumaHizi);
+		}
 	}
 
 	public int getDepolamaAlani() {
@@ -33,7 +58,18 @@ public class saklamaAlani extends parcalar{
 	}
 
 	public void setDepolamaAlani(int depolamaAlani) {
-		this.depolamaAlani = depolamaAlani;
+		try {
+			if(depolamaAlani < 0) {
+				throw new Exception("Depolama alanı 0 dan küçük olamaz // depolama hızını mb üzerinden hesapla");
+			}else {
+				this.depolamaAlani = depolamaAlani;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			System.out.println("Tekrar bir depolama alanı giriniz // mb üzerinden hesaplanıcak");
+			depolamaAlani = scan.nextInt();
+			setYazmaHizi(depolamaAlani);
+		}
 	}
 
 
@@ -89,6 +125,7 @@ public class saklamaAlani extends parcalar{
 	public void printInformation() {
 		// TODO Auto-generated method stub
 		super.printInformation();
+		System.out.println("Depolama alanı : " + depolamaAlani + "\nYazma Hızı : " + yazmaHizi + "\nOkuma Hızı : " + okumaHizi);
 	}
 
 
