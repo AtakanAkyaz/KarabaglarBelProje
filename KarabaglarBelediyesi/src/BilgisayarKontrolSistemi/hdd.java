@@ -8,9 +8,9 @@ public class hdd extends saklamaAlani{
 		
 	}
 
-	public hdd(int seriNo, int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
+	public hdd(int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
 			int okumaHizi, String tip) {
-		super(seriNo, degisimAyi, degisimYili, marka, depolamaAlani, yazmaHizi, okumaHizi);
+		super(degisimAyi, degisimYili, marka, depolamaAlani, yazmaHizi, okumaHizi);
 		this.tip = tip;
 	}
 
@@ -67,19 +67,6 @@ public class hdd extends saklamaAlani{
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
 	}
-
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
-	}
-
 	@Override
 	public int getAy() {
 		// TODO Auto-generated method stub

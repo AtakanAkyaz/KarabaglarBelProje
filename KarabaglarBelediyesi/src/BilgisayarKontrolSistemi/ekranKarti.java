@@ -5,8 +5,8 @@ public class ekranKarti extends parcalar{
 // bellek tipi (false = harici ) / (true = dahili) 
 	boolean bellekTipi;
 	int bellekBoyutu;
-	public ekranKarti(int seriNo, int degisimAyi, int degisimYili, String marka, boolean bellekTipi, int bellekBoyutu) {
-		super(seriNo, degisimAyi, degisimYili, marka);
+	public ekranKarti( int degisimAyi, int degisimYili, String marka, boolean bellekTipi, int bellekBoyutu) {
+		super(degisimAyi, degisimYili, marka);
 		this.bellekTipi = bellekTipi;
 		this.bellekBoyutu = bellekBoyutu;
 	}
@@ -49,16 +49,7 @@ public class ekranKarti extends parcalar{
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
 	}
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
-	}
+	
 	@Override
 	public int getAy() {
 		// TODO Auto-generated method stub

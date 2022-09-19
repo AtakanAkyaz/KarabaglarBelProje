@@ -4,8 +4,11 @@ public class ram extends parcalar{
 
 	int ddr , hiz;
 	
-	public ram(int seriNo, int degisimAyi, int degisimYili, String marka, int ddr, int hiz) {
-		super(seriNo, degisimAyi, degisimYili, marka);
+	public ram() {
+		
+	}
+	public ram(int degisimAyi, int degisimYili, String marka, int ddr, int hiz) {
+		super(degisimAyi, degisimYili, marka);
 		this.ddr = ddr;
 		this.hiz = hiz;
 	}
@@ -57,18 +60,6 @@ public class ram extends parcalar{
 	public void setMarka(String marka) {
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
-	}
-
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
 	}
 
 	@Override

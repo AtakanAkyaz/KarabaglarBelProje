@@ -5,9 +5,9 @@ public class ssd extends saklamaAlani{
 	String tip = "SSD";
 	
 	
-	public ssd(int seriNo, int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
+	public ssd(int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
 			int okumaHizi) {
-		super(seriNo, degisimAyi, degisimYili, marka, depolamaAlani, yazmaHizi, okumaHizi);
+		super(degisimAyi, degisimYili, marka, depolamaAlani, yazmaHizi, okumaHizi);
 	}
 
 
@@ -62,18 +62,6 @@ public class ssd extends saklamaAlani{
 	public void setMarka(String marka) {
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
-	}
-
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
 	}
 
 	@Override

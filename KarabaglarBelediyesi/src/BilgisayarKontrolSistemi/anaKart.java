@@ -8,8 +8,8 @@ public class anaKart extends parcalar{
 	public anaKart() {
 		
 	}
-	public anaKart(int seriNo, int degisimAyi, int degisimYili, String marka, int ramSoketSayisi, int driverSoketSayisi) {
-		super(seriNo, degisimAyi, degisimYili, marka);
+	public anaKart(int degisimAyi, int degisimYili, String marka, int ramSoketSayisi, int driverSoketSayisi) {
+		super(degisimAyi, degisimYili, marka);
 		this.ramSoketSayisi = ramSoketSayisi;
 		this.driverSoketSayisi = driverSoketSayisi;
 	}
@@ -62,18 +62,6 @@ public class anaKart extends parcalar{
 	public void setMarka(String marka) {
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
-	}
-
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
 	}
 
 	@Override

@@ -4,8 +4,8 @@ public class islemci extends parcalar{
 
 	double hiz ;
 	
-	public islemci(int seriNo, int degisimAyi, int degisimYili, String marka, double hiz) {
-		super(seriNo, degisimAyi, degisimYili, marka);
+	public islemci(int degisimAyi, int degisimYili, String marka, double hiz) {
+		super(degisimAyi, degisimYili, marka);
 		this.hiz = hiz;
 	}
 
@@ -38,18 +38,6 @@ public class islemci extends parcalar{
 	public void setMarka(String marka) {
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
-	}
-
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
 	}
 
 	@Override

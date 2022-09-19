@@ -9,12 +9,11 @@ public class parcalar {
 	 hdd ve ssd saklama alanının child ı 
 	*/
 	String marka;
-	int seriNo , degisimAyi , degisimYili;
+	int degisimAyi , degisimYili;
 	public parcalar() {
 		
 	}
-	public parcalar(int seriNo, int degisimAyi, int degisimYili, String marka) {
-		this.seriNo = seriNo;
+	public parcalar( int degisimAyi, int degisimYili, String marka) {
 		this.degisimAyi = degisimAyi;
 		this.degisimYili = degisimYili;
 		this.marka = marka;
@@ -37,27 +36,6 @@ public class parcalar {
 			System.out.println("Tekrar bir marka giriniz");
 			marka = scan.next();
 			setMarka(marka);
-		}
-	}
-
-	public int getSeriNo() {
-		return seriNo;
-	}
-
-	public void setSeriNo(int seriNo) {
-		try{
-			if (seriNo < 0 ) {
-				throw new Exception("Seri Numarası 0 dan küçük olamaz ! ");
-			}
-			else {
-				this.seriNo = seriNo;	
-			}
-		}
-		catch(Exception e){
-			System.out.println(e);
-			System.out.println("Tekrar bir seri numarası giriniz");
-			seriNo = scan.nextInt();
-			setSeriNo(seriNo);
 		}
 	}
 
@@ -109,7 +87,7 @@ public class parcalar {
 	}
 	
 	public void printInformation() {
-		System.out.println("Seri No : " + seriNo + "\nMarka : " + marka + "\nDeğişim yılı : " + degisimYili + "\nDeğişim ayı : " + degisimAyi);
+		System.out.println("Marka : " + marka + "\nDeğişim ayı : " + degisimAyi + "\nDeğişim yılı : " + degisimYili);
 		
 	}
 } 

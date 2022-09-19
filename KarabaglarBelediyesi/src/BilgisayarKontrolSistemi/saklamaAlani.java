@@ -7,9 +7,9 @@ public class saklamaAlani extends parcalar{
 	public saklamaAlani() {
 		
 	}
-	public saklamaAlani(int seriNo, int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
+	public saklamaAlani(int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
 			int okumaHizi) {
-		super(seriNo, degisimAyi, degisimYili, marka);
+		super(degisimAyi, degisimYili, marka);
 		this.depolamaAlani = depolamaAlani;
 		this.yazmaHizi = yazmaHizi;
 		this.okumaHizi = okumaHizi;
@@ -84,19 +84,6 @@ public class saklamaAlani extends parcalar{
 		// TODO Auto-generated method stub
 		super.setMarka(marka);
 	}
-
-	@Override
-	public int getSeriNo() {
-		// TODO Auto-generated method stub
-		return super.getSeriNo();
-	}
-
-	@Override
-	public void setSeriNo(int seriNo) {
-		// TODO Auto-generated method stub
-		super.setSeriNo(seriNo);
-	}
-
 	@Override
 	public int getAy() {
 		// TODO Auto-generated method stub
