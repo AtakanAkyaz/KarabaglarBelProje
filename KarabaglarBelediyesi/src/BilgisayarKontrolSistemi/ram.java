@@ -7,6 +7,11 @@ public class ram extends parcalar{
 	public ram() {
 		
 	}
+	public ram(String marka, int ddr, int hiz) {
+		super(marka);
+		this.ddr = ddr;
+		this.hiz = hiz;
+	}
 	public ram(int degisimAyi, int degisimYili, String marka, int ddr, int hiz) {
 		super(degisimAyi, degisimYili, marka);
 		this.ddr = ddr;

@@ -3,16 +3,32 @@ package BilgisayarKontrolSistemi;
 public class saklamaAlani extends parcalar{
 
 	int depolamaAlani , yazmaHizi , okumaHizi;
+	String tip;
 
+	
 	public saklamaAlani() {
 		
 	}
-	public saklamaAlani(int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi,
-			int okumaHizi) {
+	public saklamaAlani(String marka, int depolamaAlani, int yazmaHizi, int okumaHizi , String tip) {
+		super(marka);
+		this.depolamaAlani = depolamaAlani;
+		this.yazmaHizi = yazmaHizi;
+		this.okumaHizi = okumaHizi;
+		this.tip=tip;
+	}
+	public saklamaAlani(int degisimAyi, int degisimYili, String marka, int depolamaAlani, int yazmaHizi, int okumaHizi , String tip) {
 		super(degisimAyi, degisimYili, marka);
 		this.depolamaAlani = depolamaAlani;
 		this.yazmaHizi = yazmaHizi;
 		this.okumaHizi = okumaHizi;
+		this.tip=tip;
+	}
+	
+	public String getTip() {
+		return tip;
+	}
+	public void setTip(String tip) {
+		this.tip = tip;
 	}
 
 	public int getYazmaHizi() {

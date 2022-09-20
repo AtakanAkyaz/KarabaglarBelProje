@@ -3,15 +3,22 @@ package BilgisayarKontrolSistemi;
 public class gucUnitesi extends parcalar{
 	double watt ;
 
-	public double getWatt() {
-		return watt;
+	public gucUnitesi() {
+		
 	}
-
+	public gucUnitesi(String marka, double watt) {
+		super(marka);
+		this.watt = watt;
+	}
 	public gucUnitesi(int degisimAyi, int degisimYili, String marka, double watt) {
 		super(degisimAyi, degisimYili, marka);
 		this.watt = watt;
 	}
 
+	public double getWatt() {
+		return watt;
+	}
+	
 	public void setWatt(double watt) {
 		try {
 			if(watt < 0 ) {

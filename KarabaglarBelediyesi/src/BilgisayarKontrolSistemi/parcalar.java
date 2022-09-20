@@ -13,7 +13,12 @@ public class parcalar {
 	public parcalar() {
 		
 	}
-	public parcalar( int degisimAyi, int degisimYili, String marka) {
+	
+	public parcalar(String marka) {
+		this.marka = marka;
+	}
+	
+	public parcalar(int degisimAyi, int degisimYili, String marka) {
 		this.degisimAyi = degisimAyi;
 		this.degisimYili = degisimYili;
 		this.marka = marka;

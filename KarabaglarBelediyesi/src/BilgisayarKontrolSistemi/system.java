@@ -1,10 +1,12 @@
 package BilgisayarKontrolSistemi;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.mysql.cj.xdevapi.Statement;
 
+//scan.nextInt() den sonra gelen .nextLine() java üzerinde çalışmadığı için 1 tane boş .nextLine() atılır
 public class system { 
 
 	static Scanner scan = new Scanner(System.in);
@@ -12,35 +14,25 @@ public class system {
 	public static void main(String[] args) {
 //SQL denemeleri buradan başlıyor ------------------------------------------------------------------------------------------------------------------------
 		baglanti bag = new baglanti();
-		KasayaRamEkle(bag);
+		ArrayList arr = new ArrayList();
+		
+//		arr = bag.TablodakiGüçÜniteleriniGöster();
+		// gelen arraylist deki objelere bakma
+//		for (int i = 0 ; i< arr.size() ; i++) {
+//			gucUnitesi a = (gucUnitesi) arr.get(i);
+//			System.out.println(a.getMarka());
+//			System.out.println(a.getWatt());
+//		}
+		// gelen arraylist den obje seçme
+//		System.out.println("Güç ünitesi seç");
+//		int secim = scan.nextInt();
+//		gucUnitesi güç = (gucUnitesi) arr.get(secim-1);
+//		System.out.println(güç.getMarka());
+//		System.out.println(güç.getWatt());
+		
 //SQL denemeleri burada biyiyor ------------------------------------------------------------------------------------------------------------------------
 		
- //Exception atması durumunda işlemi tekrarlamak için anaKart.java 22-36 bak. Yukarda scanner da eklendi
-//		anaKart an = new anaKart();
-//		System.out.println("marka");
-//		String marka = scan.nextLine();
-//		an.setMarka(marka);
-//		System.out.println("Bir sayı giriniz");
-//		int girdi = scan.nextInt();
-//		an.setSeriNo(girdi);
-//		System.out.println("Bir sayı giriniz");
-//		int gird1 = scan.nextInt();
-//		an.setAy(gird1);
-//		System.out.println("Bir sayı giriniz");
-//		int gird2 = scan.nextInt();
-//		an.setYıl(gird2);
-//		System.out.println("Bir sayı giriniz");
-//		int gird3 = scan.nextInt();
-//		an.setRamSoketSayisi(gird3);
-//		System.out.println("Bir sayı giriniz");
-//		int girdi4 = scan.nextInt();
-//		an.setDriverSoketSayisi(girdi4);
-//
-//		an.printInformation();
-//		scan.nextLine(); // 30. satırdaki scan.nextInt() den sonra gelen .nextLine() java üzerinde çalışmadığı için 1 tane boş .nextLine() atılı
-//		System.out.println("Bir marka giriniz");
-//		String mark = scan.nextLine();
-//		an.setMarka(mark);
+
 	
 
 // 41- 52 ileride kalkıcak ve database den kontrol edilicek

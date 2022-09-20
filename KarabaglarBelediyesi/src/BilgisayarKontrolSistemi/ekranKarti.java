@@ -5,6 +5,14 @@ public class ekranKarti extends parcalar{
 // bellek tipi (false = harici ) / (true = dahili) 
 	boolean bellekTipi;
 	int bellekBoyutu;
+	public ekranKarti() {
+		
+	}
+	public ekranKarti(String marka, boolean bellekTipi, int bellekBoyutu) {
+		super(marka);
+		this.bellekTipi = bellekTipi;
+		this.bellekBoyutu = bellekBoyutu;
+	}
 	public ekranKarti( int degisimAyi, int degisimYili, String marka, boolean bellekTipi, int bellekBoyutu) {
 		super(degisimAyi, degisimYili, marka);
 		this.bellekTipi = bellekTipi;

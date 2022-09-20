@@ -8,6 +8,13 @@ public class anaKart extends parcalar{
 	public anaKart() {
 		
 	}
+	
+	public anaKart( String marka, int ramSoketSayisi, int driverSoketSayisi) {
+		super(marka);
+		this.ramSoketSayisi = ramSoketSayisi;
+		this.driverSoketSayisi = driverSoketSayisi;
+	}
+	
 	public anaKart(int degisimAyi, int degisimYili, String marka, int ramSoketSayisi, int driverSoketSayisi) {
 		super(degisimAyi, degisimYili, marka);
 		this.ramSoketSayisi = ramSoketSayisi;

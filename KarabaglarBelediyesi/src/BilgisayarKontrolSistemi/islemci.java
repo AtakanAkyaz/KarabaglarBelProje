@@ -4,6 +4,13 @@ public class islemci extends parcalar{
 
 	double hiz ;
 	
+	public islemci() {
+		
+	}
+	public islemci(String marka, double hiz) {
+		super(marka);
+		this.hiz = hiz;
+	}
 	public islemci(int degisimAyi, int degisimYili, String marka, double hiz) {
 		super(degisimAyi, degisimYili, marka);
 		this.hiz = hiz;
