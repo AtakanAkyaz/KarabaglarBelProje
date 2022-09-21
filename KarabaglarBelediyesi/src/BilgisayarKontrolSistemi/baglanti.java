@@ -1,5 +1,6 @@
 package BilgisayarKontrolSistemi;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -109,6 +110,27 @@ public class baglanti {
 		}
 	}
 //Tablodan veri alma işlemleri
+	public ArrayList TablodakiBilgisayarlarıGetir() {
+		sorgu = "SELECT * FROM `computers`" ;
+		ArrayList array = new ArrayList();
+		try {
+			statement = con.createStatement(); // SQL üzerinde sorgu yapabilmek için statement oluşturuyoruz
+			ResultSet result = statement.executeQuery(sorgu); // oluşturduğumuz statement ile tabloya bir querry yolluyoruz geri dönütü resultSet olarak kaydediyoruz
+			int counter = 1 ;
+			while(result.next()) { // result set de dolaşmak için 
+				int bilgisayarID = result.getInt("ID"); // result set içindeki istenilen çekmek için tipini get ile alıp içine hangi sütun olduğunu yazıyoruz
+				System.out.println(counter + ". Bilgisayarın ID si: " + bilgisayarID);
+				counter++;
+				kasa kasa = new kasa(bilgisayarID);
+				array.add(kasa);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
 	public ArrayList TablodakiAnakartlarıGöster() {
 		sorgu = "SELECT * FROM `motherboard`" ;
 		ArrayList array = new ArrayList();
@@ -254,44 +276,48 @@ public class baglanti {
 	}
 //Boş bilgisayar oluşturma
 	public kasa BilgisayarOluştur() {
-//		try {
-//			PreparedStatement statement = con.prepareStatement("Insert into computers () Values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-//			statement.setBigDecimal(1, null);
-//			statement.setInt(2, 0);
-//			statement.setInt(3, 0);
-//			statement.setString(4, null);
-//			statement.setInt(5, 0);
-//			statement.setInt(6, 0);
-//			statement.setInt(7, 0);
-//			statement.setInt(8, 0);
-//			statement.setString(9, null);
-//			statement.setDouble(10, 0);
-//			statement.setInt(11, 0);
-//			statement.setInt(12, 0);
-//			statement.setString(13, null);
-//			statement.setInt(14, 0);
-//			statement.setInt(15, 0);
-//			statement.setInt(16, 0);
-//			statement.setInt(17, 0);
-//			statement.setString(18, null);
-//			statement.setInt(19, 0);
-//			statement.setInt(20, 0);
-//			statement.setInt(21, 0);
-//			statement.setString(22, null);
-//			statement.setInt(23, 0);
-//			statement.setInt(24, 0);
-//			statement.setString(25, null);
-//			statement.setInt(26, 0);
-//			statement.setBoolean(27, false);
-//			statement.setInt(28, 0);
-//			statement.setInt(29, 0);
-//			statement.setString(30, null);
-//			statement.setDouble(31, 0);	
-//			statement.executeUpdate();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			System.out.println("Sisteme eklenicek bilgisayarın Seri Numarasını giriniz.");
+			BigDecimal serialNo = scan.nextBigDecimal();
+			PreparedStatement statement = con.prepareStatement("Insert into computers () Values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			statement.setBigDecimal(1, null);
+			statement.setInt(2, 0);
+			statement.setInt(3, 0);
+			statement.setString(4, "");
+			statement.setInt(5, 0);
+			statement.setInt(6, 0);
+			statement.setInt(7, 0);
+			statement.setInt(8, 0);
+			statement.setString(9, "");
+			statement.setDouble(10, 0);
+			statement.setInt(11, 0);
+			statement.setInt(12, 0);
+			statement.setString(13, "");
+			statement.setInt(14, 0);
+			statement.setInt(15, 0);
+			statement.setInt(16, 0);
+			statement.setInt(17, 0);
+			statement.setString(18, "");
+			statement.setInt(19, 0);
+			statement.setInt(20, 0);
+			statement.setInt(21, 0);
+			statement.setString(22, "");
+			statement.setInt(23, 0);
+			statement.setInt(24, 0);
+			statement.setString(25, "");
+			statement.setInt(26, 0);
+			statement.setBoolean(27, false);
+			statement.setInt(28, 0);
+			statement.setInt(29, 0);
+			statement.setString(30, "");
+			statement.setDouble(31, 0);	
+			statement.setBigDecimal(32, serialNo);
+			statement.executeUpdate();
+			System.out.println("Kasa başarı ile sisteme eklendi");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int id = 0;
 		sorgu = "SELECT ID FROM `computers`" ;
 		try {

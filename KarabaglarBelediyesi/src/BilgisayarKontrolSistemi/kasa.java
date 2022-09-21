@@ -2,14 +2,14 @@ package BilgisayarKontrolSistemi;
 
 public class kasa {
 
-	int ID;
+	int ID , seriNumarası;
 	parcalar anaKart , ekranKari , gucUnitesi , islemci , ram , saklamaAlani;
 	
 	public kasa(int ID) {
 		this.ID=ID;
 	}
 	
-	public kasa(int ID , parcalar anaKart, parcalar ekranKari , parcalar gucUnitesi, parcalar islemci, parcalar ram, parcalar saklamaAlani) {
+	public kasa(int ID , parcalar anaKart, parcalar ekranKari , parcalar gucUnitesi, parcalar islemci, parcalar ram, parcalar saklamaAlani , int seriNumarası) {
 		this.ID = ID;
 		this.anaKart = anaKart;
 		this.ekranKari = ekranKari;
@@ -17,10 +17,19 @@ public class kasa {
 		this.islemci = islemci;
 		this.ram = ram;
 		this.saklamaAlani = saklamaAlani;
+		this.seriNumarası = seriNumarası;
 	}
 
 	public int getID() {
 		return ID;
+	}
+
+	public int getSeriNumarası() {
+		return seriNumarası;
+	}
+
+	public void setSeriNumarası(int seriNumarası) {
+		this.seriNumarası = seriNumarası;
 	}
 
 	public parcalar getAnaKart() {
