@@ -27,6 +27,9 @@ public class ram extends parcalar{
 			if(ddr < 0) {
 				throw new Exception("DDR 0 dan küçük olamaz");
 			}
+			else {
+				this.ddr = ddr;
+			}
 		}catch(Exception e){
 			System.out.println(e);
 			System.out.println("Tekrar bir DDR değeri giriniz");

@@ -3,28 +3,26 @@ package BilgisayarKontrolSistemi;
 public class ekranKarti extends parcalar{
 
 // bellek tipi (false = harici ) / (true = dahili) 
-	boolean bellekTipi;
-	int bellekBoyutu;
+	int bellekBoyutu , bellekTipi;
 	public ekranKarti() {
 		
 	}
-	public ekranKarti(String marka, boolean bellekTipi, int bellekBoyutu) {
+	public ekranKarti(String marka, int bellekBoyutu ,int bellekTipi) {
 		super(marka);
 		this.bellekTipi = bellekTipi;
 		this.bellekBoyutu = bellekBoyutu;
 	}
-	public ekranKarti( int degisimAyi, int degisimYili, String marka, boolean bellekTipi, int bellekBoyutu) {
+	public ekranKarti( int degisimAyi, int degisimYili, String marka, int bellekTipi, int bellekBoyutu) {
 		super(degisimAyi, degisimYili, marka);
 		this.bellekTipi = bellekTipi;
 		this.bellekBoyutu = bellekBoyutu;
 	}
 
-	public boolean isBellekTipi() {
+	public int isBellekTipi() {
 		return bellekTipi;
 	}
 
-	public void setBellekTipi(boolean bellekTipi) {
-		System.out.println("Burayı siliceksin // bellek tipi için true veya false al ekrankartı.java 5 ");
+	public void setBellekTipi(int bellekTipi) {
 		this.bellekTipi = bellekTipi;
 	}
 
@@ -84,7 +82,7 @@ public class ekranKarti extends parcalar{
 		// TODO Auto-generated method stub
 		super.printInformation();
 		String bellekTipiPrint;
-		if(bellekTipi == false) {
+		if(bellekTipi == 0) {
 			bellekTipiPrint = "Harici";
 		}else {
 			bellekTipiPrint = "Dahili";

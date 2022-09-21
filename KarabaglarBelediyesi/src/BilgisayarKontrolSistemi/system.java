@@ -1,5 +1,6 @@
 package BilgisayarKontrolSistemi;
 
+import java.awt.TextField;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +16,8 @@ public class system {
 //SQL denemeleri buradan başlıyor ------------------------------------------------------------------------------------------------------------------------
 		baglanti bag = new baglanti();
 		ArrayList arr = new ArrayList();
-		
+		TabloyaSaklamaAlaniEkleme(bag);
+		bag.TablodakiSaklamaAlanlarınıGetir();
 //		arr = bag.TablodakiGüçÜniteleriniGöster();
 		// gelen arraylist deki objelere bakma
 //		for (int i = 0 ; i< arr.size() ; i++) {
@@ -152,10 +154,10 @@ public class system {
 			//else if(girdi == "ara" || girdi == "ARA" || girdi == "Ara") { databese de bulunan kasalar ve açıklamaları gelicek }
 		}
 	}
-	
+//SQL "computers" tablosuna ekleme işlemleri
 	public static void KasayaAnaKartEkle(baglanti bag) {
 		anaKart kasayaEklenicekAnaKart = new anaKart();
-		System.out.println("Ana kart markasısnı giriniz");
+		System.out.println("Ana kart markasısını giriniz");
 		String marka = scan.next();
 		kasayaEklenicekAnaKart.setMarka(marka);
 		System.out.println("Değişim ayını giriniz (1-12)");
@@ -175,7 +177,7 @@ public class system {
 	
 	public static void KasayaRamEkle(baglanti bag) {
 		ram kasayaEklenicekRam = new ram();
-		System.out.println("Ram markasısnı giriniz");
+		System.out.println("Ram markasısını giriniz");
 		String marka = scan.next();
 		kasayaEklenicekRam.setMarka(marka);
 		System.out.println("Değişim ayını giriniz (1-12)");
@@ -191,5 +193,120 @@ public class system {
 		int ddr = scan.nextInt();
 		// kasaya eklenicek kasayaEklenicekRam.setDdr(ddr);
 	}
+//SQL Tablosuna ekleme işlemleri
+	public static void TabloyaAnaKartEkle(baglanti bag) {
+		anaKart tabloyaEklenicekAnaKart = new anaKart();
+		System.out.println("Ana kart markasısını giriniz");
+		String marka = scan.next();
+		tabloyaEklenicekAnaKart.setMarka(marka);
+		System.out.println("Ana kartın ram soket sayısınız");
+		int ramSoketSayısı= scan.nextInt();
+		tabloyaEklenicekAnaKart.setRamSoketSayisi(ramSoketSayısı);
+		System.out.println("Ana kartın driver soket sayısınız");
+		int driverSoketSayısı= scan.nextInt();
+		tabloyaEklenicekAnaKart.setDriverSoketSayisi(driverSoketSayısı);
+		bag.TabloyaAnaKartEkle(tabloyaEklenicekAnaKart);
+	}
 	
+	public static void TabloyaRamEkle(baglanti bag) {
+		ram tabloyaEklenicekRam = new ram();
+		System.out.println("RAM markasısını giriniz");
+		String marka = scan.next();
+		tabloyaEklenicekRam.setMarka(marka);
+		System.out.println("RAM in DDR ını giriniz");
+		int ddr = scan.nextInt();
+		tabloyaEklenicekRam.setDdr(ddr);
+		System.out.println("RAM in hızını giriniz");
+		int hiz = scan.nextInt();
+		tabloyaEklenicekRam.setHiz(hiz);
+		bag.TabloyaRamEkle(tabloyaEklenicekRam);
+	}
+	
+	public static void TabloyaEkranKartıEkleme(baglanti bag) {
+		ekranKarti tabloyaEklenicekEkranKartı = new ekranKarti();
+		System.out.println("Ekran kartı markasısını giriniz");
+		String marka = scan.next();
+		tabloyaEklenicekEkranKartı.setMarka(marka);
+		System.out.println("Ekran kartının bellek boyutunu yazınız");
+		int bellekBoyutu = scan.nextInt();
+		tabloyaEklenicekEkranKartı.setBellekBoyutu(bellekBoyutu);
+		int bellekTipiBoolean= 0;
+		boolean flag = true;
+		while(flag) {
+			System.out.println("Ekran kartı harici ise 'harici', dahili ise 'dahili' yazınız");
+			String bellekTipi = scan.next();
+			
+			if(bellekTipi.equals("harici")) {
+				bellekTipiBoolean = 0;
+				flag = false;
+			}
+			else if(bellekTipi.equals("dahili")) {
+				bellekTipiBoolean = 1;
+				flag = false;
+			}
+			else {
+				System.out.println("Yanlış bir giriş yaptınız");
+			}
+		}
+		tabloyaEklenicekEkranKartı.setBellekTipi(bellekTipiBoolean);
+		bag.TabloyaEkranKartıEkle(tabloyaEklenicekEkranKartı);
+	}
+
+	public static void TabloyaGüçÜnitesiEkleme(baglanti bag) {
+		gucUnitesi tabloyaEklenicekGüçÜnitesi = new gucUnitesi();
+		System.out.println("Güç ünitesinin markasısını giriniz");
+		String marka = scan.next();
+		tabloyaEklenicekGüçÜnitesi.setMarka(marka);
+		System.out.println("Güç ünitesinin enerji seviyesini watt cinsinden giriniz");
+		int watt = scan.nextInt();
+		tabloyaEklenicekGüçÜnitesi.setWatt(watt);
+		bag.TabloyaGüçUnitesiEkle(tabloyaEklenicekGüçÜnitesi);
+	}
+	
+	public static void TabloyaİşlemciEkleme(baglanti bag) {
+		islemci tabloyaEklenicekİşlemci = new islemci();
+		System.out.println("İşlmecinin markasısını giriniz");
+		String marka = scan.next();
+		tabloyaEklenicekİşlemci.setMarka(marka);
+		System.out.println("İşlemcinin hızını giriniz");
+		double hiz = scan.nextDouble();
+		tabloyaEklenicekİşlemci.setHiz(hiz);
+		bag.TabloyaİşlemciEkle(tabloyaEklenicekİşlemci);
+	}
+	
+	public static void TabloyaSaklamaAlaniEkleme(baglanti bag) {
+		saklamaAlani tabloyaEklenicekSakalmaAlanı = new saklamaAlani();
+		System.out.println("Sakalma alanının markasısını giriniz");
+		String marka = scan.next();
+		tabloyaEklenicekSakalmaAlanı.setMarka(marka);
+		System.out.println("Saklama alanının depo kapasitesini yazınız");
+		int depolamaAlani = scan.nextInt();
+		tabloyaEklenicekSakalmaAlanı.setDepolamaAlani(depolamaAlani);
+		System.out.println("Saklama alanının yazma hızını giriniz");
+		int yazmaHizi = scan.nextInt();
+		tabloyaEklenicekSakalmaAlanı.setYazmaHizi(yazmaHizi);
+		System.out.println("Saklama alanının okuma hızını giriniz");
+		int okumaHizi = scan.nextInt();
+		tabloyaEklenicekSakalmaAlanı.setOkumaHizi(okumaHizi);
+		String saklamaAlaniTipi = null;
+		boolean flag = true;
+		while(flag) {
+			System.out.println("Saklama alanı tipi hdd ise 'hdd' ssd ise 'ssd' yazınız ");
+			saklamaAlaniTipi = scan.next();
+			
+			if(saklamaAlaniTipi.equals("hdd")) {
+				flag = false;
+			}
+			else if(saklamaAlaniTipi.equals("ssd")) {
+				flag = false;
+			}
+			else {
+				System.out.println("Yanlış bir giriş yaptınız");
+			}
+		}
+		tabloyaEklenicekSakalmaAlanı.setTip(saklamaAlaniTipi);
+		bag.TabloyaSaklamaAlanıEkle(tabloyaEklenicekSakalmaAlanı);
+	}
 }
+
+	
