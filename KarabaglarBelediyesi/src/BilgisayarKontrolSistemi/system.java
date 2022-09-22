@@ -13,6 +13,7 @@ public class system {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		
 //SQL denemeleri buradan başlıyor ------------------------------------------------------------------------------------------------------------------------
 		baglanti bag = new baglanti();
 		ArrayList arr = new ArrayList();
@@ -59,10 +60,13 @@ public class system {
 //Normal kullanıcı girişi
 			if(depoKullanıcıAdi.equals(kullaniciAdi ) && depoSifre.equals(sifre)) {
 				System.out.println("Sisteme Hoş geldiniz");
+//Giriş yapan kullanıcıya göre çıktı farklı olacağı için kullanıcı objesini "KullaniciPaneli" ne yolluyoruz
 				KullaniciPaneli(kullanici1,bag);
 			}
 //Admin girişi
 			else if(adminDepoKullaniciAdi.equals(kullaniciAdi)  && adminDepoSifre.equals(sifre)) {
+				System.out.println("Sisteme Hoş geldiniz");
+//Giriş yapan kullanıcıya göre çıktı farklı olacağı için kullanıcı objesini "KullaniciPaneli" ne yolluyoruz
 				KullaniciPaneli(kullanici2,bag);
 				
 			}
@@ -94,26 +98,38 @@ public class system {
 	
 	public static void KullaniciPaneli(kullanici kullanici, baglanti bag) {
 		Scanner scan = new Scanner(System.in);
+		boolean flag = true;
+		while(flag) {
 		System.out.println("Kullanıcı paneline hoş geldiniz\n"
 				+ "1- Programları kontrol etmek için \n"
-				+ "2- Kasa ile ilgili işlemler için ");
+				+ "2- Kasa ile ilgili işlemler için \n"
+				+ "3- Sisteme parça eklemek için\n"
+				+ "0- Kullanıcı çıkışı yapmak için");
 		int input = scan.nextInt();
 		switch(input) {
 		case 1:
 //programları kontrol etme
+			ProgramKontrolu();
 			break;
 		case 2:
 //Kasa işlemleri , Bir kullanıcı alır kullanıcının admin olup olmamasına göre ileride kullanıcıya gösterilicek seçenekler şekillenir
 			KasaIslemleri(kullanici , bag);
 			break;
+		case 3:
+			DataBaseEParcaEkleme(bag);
+			break;
+		case 0:
+			flag = false ;
+			break;
 		default:
 			System.out.println("Lütfen geçerli olan seçimlerden birini kullanınız");
 			break;
+			}
 		}
 	}
-	
+
 	public static void ProgramKontrolu() {
-		
+		// kontrol ederken program ekliyip çıkarmayı manuel yapmasın kontrol edip baktığında bulduklarını sisteme eklesin bulamadıklarını sistemden çıkartsın
 	}
 	
 	public static void KasaIslemleri(kullanici kullanici , baglanti bag) {
@@ -122,16 +138,34 @@ public class system {
 		while(flag) {
 			System.out.println("İşlem yapıcağınız kasanın kodunu biliyorsanız lütfen yazınınız\nBilmiyorsanız 'ara' yazarak sistemdeki kasaları görüntüliyebilirsiniz");
 			if(kullanici.isFlag()) {
-				System.out.println("Kasa eklemek için 'ekle' yazınız");
+				System.out.println("Kasa eklemek için 'ekle'\nKasa kaldırmak için 'kaldır' yazınız");
 			}
+// Tablodaki bilgisayar ID lerini array e kaydetme
+			ArrayList array = bag.TablodaBulunanBilgisayarlarınIDleri();
 			String girdi = scan.next();
-			if(girdi.equals("1")){ 
+			if(girdi.equals("ara")|| girdi.equals("ARA")|| girdi.equals("Ara")){ 
+				bag.TablodakiBilgisayarlarıGetir();
+				break;
+			}
+			else if(kullanici.isFlag() && girdi.equals("ekle")||girdi.equals("EKLE")||girdi.equals("Ekle")) {
+				bag.BilgisayarOluştur();
+				break;
+			}
+			else if(kullanici.isFlag() && girdi.equals("kaldır")||girdi.equals("KALDIR")||girdi.equals("Kaldır")) {
+				bag.BilgisayarKaldır();
+				break;
+			}
+			int kasaID = -1;
+			try {
+				kasaID = Integer.valueOf(girdi);
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+			
+// Tablodan alınan ID lerin kaydedildiği array in içinde girilen değerin olup olmadığı sorgulanıyor
+			if(array.contains(kasaID)){ 
 				System.out.println("1- program ekle kaldır\n"
 						+ "2- parça ekle kaldır");
-		// Admin olarak girildiği takdirde kasa ekleme ve kaldırma seçenekleri de kullanıcıya sunuluyor
-				if(kullanici.isFlag()) {
-					System.out.println("3- kasa ekle veya kaldır");
-				}
 				System.out.println("0- Çıkış yapıp giriş paneline dönmek için");
 				int input = scan.nextInt();
 				switch(input) {
@@ -141,14 +175,8 @@ public class system {
 				case 2:
 					
 					break;
-				case 3:
-					if(kullanici.isFlag()) {
-						bag.BilgisayarOluştur();
-					}else {
-						System.out.println("Yanlış bir değer verdiniz");
-					}
-					break;
 				case 0 :
+					System.out.println("Kullanıcı paneline dönülüyor");
 					flag = false;
 					break;
 				default :
@@ -156,11 +184,11 @@ public class system {
 					break;
 				}
 			}
-			else if(girdi.equals("ara")|| girdi.equals("ARA")|| girdi.equals("Ara")){ 
-				bag.TablodakiBilgisayarlarıGetir();
-			}
-			else if(kullanici.isFlag() && girdi.equals("ekle")||girdi.equals("EKLE")||girdi.equals("Ekle")) {
-				bag.BilgisayarOluştur();
+//Giriş yapan kullanıcı admin statüsüne sahip ise ve "ara" veya "ekle" veya "kaldır" gibi 
+//bir giriş yaptıysa uygulanıcak komutlar
+			
+			else {
+				System.out.println("Yanlış bir değer verdiniz");
 			}
 		}
 	}
@@ -204,6 +232,48 @@ public class system {
 		// kasaya eklenicek kasayaEklenicekRam.setDdr(ddr);
 	}
 //SQL Tablosuna ekleme işlemleri
+	//Data Base e parça eklemek için bir tablo ile ne eklemek istediklerinin sorulduğu kısım
+	public static void DataBaseEParcaEkleme(baglanti bag) {
+		boolean flag = true;
+		while(flag) {
+		System.out.println("Eklemek istediğiniz parçayı seçiniz\n"
+				+ "1- Anakart ekle\n"
+				+ "2- Ram ekle\n"
+				+ "3- Ekran kartı ekle\n"
+				+ "4- Güç ünitesi ekle\n"
+				+ "5- İşlemci ekle\n"
+				+ "6- Saklama alanı ekle\n"
+				+ "0- Çıkış için ");
+		int girdi = scan.nextInt();
+		switch(girdi) {
+		case 1:
+			TabloyaAnaKartEkle(bag);
+			break;
+		case 2: 
+			TabloyaRamEkle(bag);
+			break;
+		case 3:
+			TabloyaEkranKartiEkleme(bag);
+			break;
+		case 4:
+			TabloyaGucUnitesiEkleme(bag);
+			break;
+		case 5:
+			TabloyaIslemciEkleme(bag);
+			break;
+		case 6:
+			TabloyaSaklamaAlaniEkleme(bag);
+			break;
+		case 0:
+			flag = false;
+			break;
+		default:
+			System.out.println("Geçerli olmayan bir değer girdiniz");
+		break;
+			}
+		}
+	}
+	
 	public static void TabloyaAnaKartEkle(baglanti bag) {
 		anaKart tabloyaEklenicekAnaKart = new anaKart();
 		System.out.println("Ana kart markasısını giriniz");

@@ -110,6 +110,22 @@ public class baglanti {
 		}
 	}
 //Tablodan veri alma işlemleri
+	public ArrayList TablodaBulunanBilgisayarlarınIDleri() {
+		sorgu = "SELECT ID FROM `computers` ";
+		ArrayList array = new ArrayList();
+		try {
+			statement = con.createStatement();
+			ResultSet result = statement.executeQuery(sorgu);
+			while(result.next()) {
+				int bilgisayarID = result.getInt("ID");
+				array.add(bilgisayarID);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
 	public ArrayList TablodakiBilgisayarlarıGetir() {
 		sorgu = "SELECT * FROM `computers`" ;
 		ArrayList array = new ArrayList();
@@ -274,7 +290,7 @@ public class baglanti {
 		}
 		return array;
 	}
-//Boş bilgisayar oluşturma
+//Boş bilgisayar oluşturma/kaldırma
 	public kasa BilgisayarOluştur() {
 		try {
 			System.out.println("Sisteme eklenicek bilgisayarın Seri Numarasını giriniz.");
@@ -334,7 +350,22 @@ public class baglanti {
 		kasa kasa = new kasa(id);
 		return kasa;
 	}
-//Bilgisayarın içini doldurm
+
+	public void BilgisayarKaldır() {
+		TablodakiBilgisayarlarıGetir();
+		System.out.println("****************************************************************************************************");
+		System.out.println("Kaldırmak istediğiniz bilgisayarın ID sini giriniz");
+		int id = scan.nextInt();
+		try {
+			String sorgu = "DELETE FROM `computers` WHERE ID="+id;
+			statement = con.createStatement();
+			statement.executeUpdate(sorgu);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+//Bilgisayarın içini doldurma
 	public void BilgisayaraAnaKartEkle (kasa PC) {
 		
 	}
