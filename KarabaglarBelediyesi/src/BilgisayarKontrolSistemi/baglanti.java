@@ -132,11 +132,10 @@ public class baglanti {
 		try {
 			statement = con.createStatement(); // SQL üzerinde sorgu yapabilmek için statement oluşturuyoruz
 			ResultSet result = statement.executeQuery(sorgu); // oluşturduğumuz statement ile tabloya bir querry yolluyoruz geri dönütü resultSet olarak kaydediyoruz
-			int counter = 1 ;
 			while(result.next()) { // result set de dolaşmak için 
 				int bilgisayarID = result.getInt("ID"); // result set içindeki istenilen çekmek için tipini get ile alıp içine hangi sütun olduğunu yazıyoruz
-				System.out.println(counter + ". Bilgisayarın ID si: " + bilgisayarID);
-				counter++;
+				BigDecimal bilgisayarSeriNo = result.getBigDecimal("SerialNumber");
+				System.out.println("Bilgisayarın ID si: " + bilgisayarID + ". Bilgisayarın seri numarası: " + bilgisayarSeriNo);
 				kasa kasa = new kasa(bilgisayarID);
 				array.add(kasa);
 			}
@@ -223,6 +222,7 @@ public class baglanti {
 	}
 	
 	public ArrayList TablodakiGüçÜniteleriniGöster() {
+		
 		sorgu = "SELECT * FROM `powerunit`" ;
 		ArrayList array = new ArrayList();
 		try {
@@ -366,34 +366,90 @@ public class baglanti {
 		}
 	}
 //Bilgisayarın içini doldurma
-	public void BilgisayaraAnaKartEkle (kasa PC) {
-		
+	public void BilgisayaraAnaKartEkle (int kasaID,anaKart anaKart ,int ay , int yıl) {
+		try{
+			PreparedStatement statement = con.prepareStatement("UPDATE `computers` SET `MotherBoardBrand`=? , `MotherBoardChangeMonth`=? , `MotherBoardChangeYear`=? , `MotherBoardRamSocketCount`=? , `MotherBoardDriverSocketCount`=? WHERE ID="+kasaID);
+			statement.setString(1, anaKart.getMarka());
+			statement.setInt(2, ay);
+			statement.setInt(3, yıl);
+			statement.setInt(4, anaKart.getRamSoketSayisi());
+			statement.setInt(5, anaKart.getDriverSoketSayisi());
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void BilgisayaraRamEkle (kasa PC) {
-		
+	public void BilgisayaraRamEkle (int kasaID , ram Ram , int ay , int yıl) {
+		try {
+			PreparedStatement statement = con.prepareStatement("UPDATE `computers` SET `RAMBrand`=? , `RAMChangeMonth`=? , `RAMChangeYear`=? , `RAMSpeed`=? , `RAMDDR`=? WHERE ID="+kasaID);
+			statement.setString(1, Ram.getMarka());
+			statement.setInt(2, ay);
+			statement.setInt(3, yıl);
+			statement.setInt(4, Ram.getHiz());
+			statement.setInt(5, Ram.getDdr());
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void BilgisayaraEkranKartıEkle (kasa PC) {
-		
+	public void  BilgisayaraİşlemciEkle(int kasaID,islemci işlemci,int ay , int yıl) {
+		try {
+			PreparedStatement statement = con.prepareStatement("UPDATE `computers` SET `ProcessorBrand`=? , `ProcessorChangeMonth`=? , `ProcessorChangeYear`=? , `ProcessorSpeed`=? WHERE ID="+kasaID);
+			statement.setString(1, işlemci.getMarka());
+			statement.setInt(2, ay);
+			statement.setInt(3, yıl);
+			statement.setDouble(4, işlemci.getHiz());
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void BilgisayaraGüçÜnitesiEkle (kasa PC) {
-		
+	public void BilgisayaraGüçÜnitesiEkle (int kasaID , gucUnitesi güçÜnitesi ,int ay ,int yıl) {
+		try {
+			PreparedStatement statement = con.prepareStatement("UPDATE `computers` SET `PowerUnitBrand`=? , `PowerUnitChangeMonth`=? , `PowerUnitChangeYear`=? , `PowerUnitWatt`=? WHERE ID="+kasaID);
+			statement.setString(1, güçÜnitesi.getMarka());
+			statement.setInt(2, ay);
+			statement.setInt(3, yıl);
+			statement.setDouble(4, güçÜnitesi.getWatt());
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void BilgisayaraİşlemciEkle (kasa PC) {
-		
+	public void BilgisayaraEkranKartıEkle (int kasaID , ekranKarti ekranKartı , int ay , int yıl) {
+		try {
+			PreparedStatement statement = con.prepareStatement("UPDATE `computers` SET `GPUBrand`=? , `GPUChangeMonth`=? , `GPUChangeYear`=? , `GPUMemory`=? ,  `GPUType`=? WHERE ID="+kasaID);
+			statement.setString(1, ekranKartı.getMarka());
+			statement.setInt(2, ay);
+			statement.setInt(3, yıl);
+			statement.setInt(4, ekranKartı.getBellekBoyutu());
+			statement.setInt(5, ekranKartı.getBellekTipi());
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void BilgisayaraSaklamaAlanıEkle (kasa PC) {
-		
+	public void BilgisayaraSaklamaAlanıEkle (int kasaID , saklamaAlani saklamaAlanı,int ay ,int yıl) {
+		try {
+			PreparedStatement statement = con.prepareStatement("UPDATE `computers` SET `MemoryBrand`=? , `MemoryChangeMonth`=? , `MemoryChangeYear`=? , `MemoryCapacity`=? , `MemoryReadSpeed`=? , `MemoryWriteSpeed`=? , `MemoryType`=? WHERE ID="+kasaID);
+			statement.setString(1, saklamaAlanı.getMarka());
+			statement.setInt(2, ay);
+			statement.setInt(3, yıl);
+			statement.setInt(4, saklamaAlanı.getDepolamaAlani());
+			statement.setInt(5, saklamaAlanı.getOkumaHizi());
+			statement.setInt(6, saklamaAlanı.getYazmaHizi());
+			statement.setString(7, saklamaAlanı.getTip());
+			statement.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-
-	
-	
-	
 	public void calisanlariGetir() {
 		sorgu = "SELECT * FROM `users`" ;
 		try {

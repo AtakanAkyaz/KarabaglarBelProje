@@ -25,6 +25,10 @@ public class ekranKarti extends parcalar{
 	public void setBellekTipi(int bellekTipi) {
 		this.bellekTipi = bellekTipi;
 	}
+	
+	public int getBellekTipi() {
+		return this.bellekTipi;
+	}
 
 	public int getBellekBoyutu() {
 		return bellekBoyutu;

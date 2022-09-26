@@ -140,11 +140,16 @@ public class system {
 			if(kullanici.isFlag()) {
 				System.out.println("Kasa eklemek için 'ekle'\nKasa kaldırmak için 'kaldır' yazınız");
 			}
+			System.out.println("Çıkış yapmak için 'çıkış' yazınız");
 // Tablodaki bilgisayar ID lerini array e kaydetme
 			ArrayList array = bag.TablodaBulunanBilgisayarlarınIDleri();
 			String girdi = scan.next();
 			if(girdi.equals("ara")|| girdi.equals("ARA")|| girdi.equals("Ara")){ 
 				bag.TablodakiBilgisayarlarıGetir();
+				break;
+			}
+			else if(girdi.equals("çıkış")|| girdi.equals("ÇIKIŞ")|| girdi.equals("Çıkış")){ 
+				flag = false;
 				break;
 			}
 			else if(kullanici.isFlag() && girdi.equals("ekle")||girdi.equals("EKLE")||girdi.equals("Ekle")) {
@@ -155,6 +160,7 @@ public class system {
 				bag.BilgisayarKaldır();
 				break;
 			}
+			
 			int kasaID = -1;
 			try {
 				kasaID = Integer.valueOf(girdi);
@@ -173,7 +179,7 @@ public class system {
 					
 					break;
 				case 2:
-					
+					KasayaParcaEkle(bag , kasaID);
 					break;
 				case 0 :
 					System.out.println("Kullanıcı paneline dönülüyor");
@@ -193,50 +199,125 @@ public class system {
 		}
 	}
 //SQL "computers" tablosuna ekleme işlemleri
-	public static void KasayaAnaKartEkle(baglanti bag) {
-		anaKart kasayaEklenicekAnaKart = new anaKart();
-		System.out.println("Ana kart markasısını giriniz");
-		String marka = scan.next();
-		kasayaEklenicekAnaKart.setMarka(marka);
-		System.out.println("Değişim ayını giriniz (1-12)");
-		int ay = scan.nextInt();
-		kasayaEklenicekAnaKart.setAy(ay);
-		System.out.println("Değişim yılını giriniz (1900-2200)");
-		int yıl = scan.nextInt();
-		kasayaEklenicekAnaKart.setYıl(yıl);
-		System.out.println("Ram soket sayısını giriniz");
-		int ramSoketSayısı = scan.nextInt();
-		kasayaEklenicekAnaKart.setRamSoketSayisi(ramSoketSayısı);;
-		System.out.println("Driver soket sayısını giriniz");
-		int driverSoketSayısı = scan.nextInt();
-		kasayaEklenicekAnaKart.setDriverSoketSayisi(driverSoketSayısı);
-		// kasaya eklenicek bag.TabloyaAnaKartEkle(kasayaEklenicekAnaKart);
+	public static void KasayaParcaEkle(baglanti bag , int kasaID) {
+		boolean flag = true;
+		while(flag) {
+		System.out.println("Kasaya eklemek istediğiniz parçayı seçiniz\n"
+				+ "1- Anakart ekle\n"
+				+ "2- Ram ekle\n"
+				+ "3- Ekran kartı ekle\n"
+				+ "4- Güç ünitesi ekle\n"
+				+ "5- İşlemci ekle\n"
+				+ "6- Saklama alanı ekle\n"
+				+ "0- Çıkış için ");
+		int girdi = scan.nextInt();
+		switch (girdi) {
+		case 1:
+			KasayaAnaKartEkle(bag , kasaID);
+			break;
+		case 2:
+			KasayaRamEkle(bag , kasaID);
+			break;
+		case 3:
+			KasayaEkranKartiEkle(bag , kasaID);
+			break;
+		case 4:
+			KasayaGucUnitesiEkle(bag , kasaID);
+			break;
+		case 5:
+			KasayaIslemciEkle(bag , kasaID);
+			break;
+		case 6:
+			KasayaSaklamaAlaniEkle(bag , kasaID);
+			break;
+		case 0:
+			flag = false;
+			break;
+		default:
+			System.out.println("Yanlış bir değer girdiniz");
+			break;
+			}
+		}
 	}
 	
-	public static void KasayaRamEkle(baglanti bag) {
-		ram kasayaEklenicekRam = new ram();
-		System.out.println("Ram markasısını giriniz");
-		String marka = scan.next();
-		kasayaEklenicekRam.setMarka(marka);
+	public static void KasayaAnaKartEkle(baglanti bag , int kasaID) {
+
 		System.out.println("Değişim ayını giriniz (1-12)");
 		int ay = scan.nextInt();
-		kasayaEklenicekRam.setAy(ay);
 		System.out.println("Değişim yılını giriniz (1900-2200)");
 		int yıl = scan.nextInt();
-		kasayaEklenicekRam.setYıl(yıl);
-		System.out.println("Ram hızını giriniz");
-		int hiz = scan.nextInt();
-		kasayaEklenicekRam.setHiz(hiz);;
-		System.out.println("Ram in DDR ını giriniz");
-		int ddr = scan.nextInt();
-		// kasaya eklenicek kasayaEklenicekRam.setDdr(ddr);
+		ArrayList ar = bag.TablodakiAnakartlarıGöster();
+		System.out.println("Eklemek istediğiniz anakartı seçin");
+		int input = scan.nextInt();
+		anaKart eklenicekAnaKart = (anaKart) ar.get(input-1);
+		bag.BilgisayaraAnaKartEkle(kasaID, eklenicekAnaKart , ay , yıl);
+	}
+	
+	public static void KasayaEkranKartiEkle(baglanti bag , int kasaID) {
+		System.out.println("Değişim ayını giriniz (1-12)");
+		int ay = scan.nextInt();
+		System.out.println("Değişim yılını giriniz (1900-2200)");
+		int yıl = scan.nextInt();
+		ArrayList ar = bag.TablodakiEkranKartlarınıGöster();
+		System.out.println("Eklemek istediğiniz ekran kartını seçin");
+		int input = scan.nextInt();
+		ekranKarti eklenicekEkranKartı = (ekranKarti) ar.get(input-1);
+		bag.BilgisayaraEkranKartıEkle(kasaID, eklenicekEkranKartı , ay , yıl);
+	}
+	
+	public static void KasayaIslemciEkle(baglanti bag , int kasaID) {
+		System.out.println("Değişim ayını giriniz (1-12)");
+		int ay = scan.nextInt();
+		System.out.println("Değişim yılını giriniz (1900-2200)");
+		int yıl = scan.nextInt();
+		ArrayList ar = bag.TablodakiİşlemcileriGetir();
+		System.out.println("Eklemek istediğiniz işlemciyi seçin");
+		int input = scan.nextInt();
+		islemci eklenicekİşlemci= (islemci) ar.get(input-1);
+		bag.BilgisayaraİşlemciEkle(kasaID, eklenicekİşlemci, ay , yıl);
+	}
+	
+	public static void KasayaRamEkle(baglanti bag , int kasaID) {
+		System.out.println("Değişim ayını giriniz (1-12)");
+		int ay = scan.nextInt();
+		System.out.println("Değişim yılını giriniz (1900-2200)");
+		int yıl = scan.nextInt();
+		ArrayList ar = bag.TablodakiRamleriGöster();
+		System.out.println("Eklemek istediğiniz Ram i seçin");
+		int input = scan.nextInt();
+		ram eklenicekRam= (ram) ar.get(input-1);
+		bag.BilgisayaraRamEkle(kasaID, eklenicekRam, ay , yıl);
+	}
+
+	public static void KasayaGucUnitesiEkle(baglanti bag , int kasaID) {
+		System.out.println("Değişim ayını giriniz (1-12)");
+		int ay = scan.nextInt();
+		System.out.println("Değişim yılını giriniz (1900-2200)");
+		int yıl = scan.nextInt();
+		ArrayList ar = bag.TablodakiGüçÜniteleriniGöster();
+		System.out.println("Eklemek istediğiniz güç ünitesini seçin");
+		int input = scan.nextInt();
+		gucUnitesi eklenicekGüçÜnitesi= (gucUnitesi) ar.get(input-1);
+		bag.BilgisayaraGüçÜnitesiEkle(kasaID, eklenicekGüçÜnitesi, ay , yıl);
+	}
+	
+	public static void KasayaSaklamaAlaniEkle(baglanti bag , int kasaID) {
+		System.out.println("Değişim ayını giriniz (1-12)");
+		int ay = scan.nextInt();
+		System.out.println("Değişim yılını giriniz (1900-2200)");
+		int yıl = scan.nextInt();
+		ArrayList ar = bag.TablodakiSaklamaAlanlarınıGetir();
+		System.out.println("Eklemek istediğiniz saklama alanını seçin");
+		int input = scan.nextInt();
+		saklamaAlani eklenicekSaklamaAlanı= (saklamaAlani) ar.get(input-1);
+		bag.BilgisayaraSaklamaAlanıEkle(kasaID, eklenicekSaklamaAlanı, ay , yıl);
 	}
 //SQL Tablosuna ekleme işlemleri
 	//Data Base e parça eklemek için bir tablo ile ne eklemek istediklerinin sorulduğu kısım
 	public static void DataBaseEParcaEkleme(baglanti bag) {
 		boolean flag = true;
 		while(flag) {
-		System.out.println("Eklemek istediğiniz parçayı seçiniz\n"
+		System.out.println("Databese e eklemek istediğiniz parçayı seçiniz\n"
 				+ "1- Anakart ekle\n"
 				+ "2- Ram ekle\n"
 				+ "3- Ekran kartı ekle\n"
