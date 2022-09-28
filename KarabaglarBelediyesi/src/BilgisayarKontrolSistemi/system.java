@@ -14,80 +14,59 @@ public class system {
 
 	public static void main(String[] args) {
 		
-//SQL denemeleri buradan başlıyor ------------------------------------------------------------------------------------------------------------------------
 		baglanti bag = new baglanti();
 		ArrayList arr = new ArrayList();
-//		arr = bag.TablodakiGüçÜniteleriniGöster();
-		// gelen arraylist deki objelere bakma
-//		for (int i = 0 ; i< arr.size() ; i++) {
-//			gucUnitesi a = (gucUnitesi) arr.get(i);
-//			System.out.println(a.getMarka());
-//			System.out.println(a.getWatt());
-//		}
-		// gelen arraylist den obje seçme
-//		System.out.println("Güç ünitesi seç");
-//		int secim = scan.nextInt();
-//		gucUnitesi güç = (gucUnitesi) arr.get(secim-1);
-//		System.out.println(güç.getMarka());
-//		System.out.println(güç.getWatt());
-		
-//SQL denemeleri burada biyiyor ------------------------------------------------------------------------------------------------------------------------
-		
 
-	
 
-// 41- 52 ileride kalkıcak ve database den kontrol edilicek
-// Buradan
-		kullanici kullanici1 = new kullanici();
-		kullanici1.setFlag(false);
-		kullanici kullanici2 = new kullanici();
-		kullanici2.setFlag(true);
 		
 		
-		String adminDepoKullaniciAdi = "kBel";
-		String adminDepoSifre = "@dm!N123";
-		
-		String depoKullanıcıAdi = "Atakan";
-		String depoSifre = "123";
-// Buraya Kadar
 		boolean flag = true ;
+		boolean ifFlag= true;
 		while (flag) {
 			System.out.println("Karabağlar Belediyesi Bilgi İşlem Yazılımına Hoş Geldiniz ...\n"
 					+ "Kullanıcı Adınızı Giriniz : ");
 			String kullaniciAdi = scan.next();
 			System.out.println("Şifrenizi Giriniz : ");
 			String sifre = scan.next();
+			ArrayList<kullanici> userArray = bag.KullanıcılarıGetir();
+			for (int i = 0 ; i < userArray.size() ; i++) {
 //Normal kullanıcı girişi
-			if(depoKullanıcıAdi.equals(kullaniciAdi ) && depoSifre.equals(sifre)) {
+			if(userArray.get(i).getIsim().equals(kullaniciAdi) && userArray.get(i).getSifre().equals(sifre) && userArray.get(i).getFlag()) {
 				System.out.println("Sisteme Hoş geldiniz");
 //Giriş yapan kullanıcıya göre çıktı farklı olacağı için kullanıcı objesini "KullaniciPaneli" ne yolluyoruz
-				KullaniciPaneli(kullanici1,bag);
+				KullaniciPaneli(userArray.get(i),bag);
+				ifFlag = false;
 			}
 //Admin girişi
-			else if(adminDepoKullaniciAdi.equals(kullaniciAdi)  && adminDepoSifre.equals(sifre)) {
+			else if(userArray.get(i).getIsim().equals(kullaniciAdi) && userArray.get(i).getSifre().equals(sifre)) {
 				System.out.println("Sisteme Hoş geldiniz");
 //Giriş yapan kullanıcıya göre çıktı farklı olacağı için kullanıcı objesini "KullaniciPaneli" ne yolluyoruz
-				KullaniciPaneli(kullanici2,bag);
-				
+				KullaniciPaneli(userArray.get(i),bag);	
+				ifFlag = false;
+				}
+			else {
+				ifFlag = true;
+			}
 			}
 //Yanlış isim veya şifre kullanımı
-			else {
+			if(ifFlag){
 				System.out.println("Girdiğiniz kullanıcı adı veya şifre yanlış\n"
 						+ "1- Tekrar denemek için\n"
 						+ "2- Çıkış yapmak için");
 				int input = scan.nextInt();
 				boolean tekrarFlag = true;
 				while (tekrarFlag) {
+					if (input == 1) {
+						tekrarFlag = false;
+						break;
+					}
 					if(input == 2) {
 						System.out.println("Sistemden çıkış yapılıyor");
 						tekrarFlag = false;
 						flag = false;
 						break;
 					}
-					if (input == 1) {
-						tekrarFlag = false;
-						break;
-					}
+					
 					if(input != 1 || input != 2) {
 						System.out.println("Lütfen geçerli bir seçeneği kullanınız");
 					}
@@ -103,8 +82,11 @@ public class system {
 		System.out.println("Kullanıcı paneline hoş geldiniz\n"
 				+ "1- Programları kontrol etmek için \n"
 				+ "2- Kasa ile ilgili işlemler için \n"
-				+ "3- Sisteme parça eklemek için\n"
-				+ "0- Kullanıcı çıkışı yapmak için");
+				+ "3- Sisteme parça eklemek için");
+		if(kullanici.getFlag()) {
+			System.out.println("4- Kullanıcı işlemleri");
+		}
+		System.out.println("0- Kullanıcı çıkışı");
 		int input = scan.nextInt();
 		switch(input) {
 		case 1:
@@ -118,6 +100,24 @@ public class system {
 		case 3:
 			DataBaseEParcaEkleme(bag);
 			break;
+		case 4:
+			if(kullanici.getFlag()) {
+				scan.nextLine();
+				System.out.println("Kullanıcı eklemek için 'kullanıcı ekle'\nKullanıcı kaldırmak için 'kullanıcı kaldır'");
+				String girdi = scan.nextLine();
+				girdi = girdi.toLowerCase();
+				if(girdi.equals("kullanıcı ekle")){
+					bag.KullanıcıEkle();
+				}
+				else if(girdi.equals("kullanıcı kaldır")) {
+					bag.TablodakiKullanıcılarıYazdır();
+					bag.KullanıcıKaldır();
+				}
+			}
+			else {
+				System.out.println("Lütfen geçerli olan seçimlerden birini kullanınız");
+				break;
+			}
 		case 0:
 			flag = false ;
 			break;
@@ -137,30 +137,30 @@ public class system {
 		boolean flag = true;
 		while(flag) {
 			System.out.println("İşlem yapıcağınız kasanın kodunu biliyorsanız lütfen yazınınız\nBilmiyorsanız 'ara' yazarak sistemdeki kasaları görüntüliyebilirsiniz");
-			if(kullanici.isFlag()) {
+			if(kullanici.getFlag()) {
 				System.out.println("Kasa eklemek için 'ekle'\nKasa kaldırmak için 'kaldır' yazınız");
 			}
 			System.out.println("Çıkış yapmak için 'çıkış' yazınız");
 // Tablodaki bilgisayar ID lerini array e kaydetme
 			ArrayList array = bag.TablodaBulunanBilgisayarlarınIDleri();
 			String girdi = scan.next();
-			if(girdi.equals("ara")|| girdi.equals("ARA")|| girdi.equals("Ara")){ 
+			girdi = girdi.toLowerCase();
+			if(girdi.equals("ara")){ 
 				bag.TablodakiBilgisayarlarıGetir();
 				break;
 			}
-			else if(girdi.equals("çıkış")|| girdi.equals("ÇIKIŞ")|| girdi.equals("Çıkış")){ 
+			else if(girdi.equals("çıkış")){ 
 				flag = false;
 				break;
 			}
-			else if(kullanici.isFlag() && girdi.equals("ekle")||girdi.equals("EKLE")||girdi.equals("Ekle")) {
+			else if(kullanici.getFlag() && girdi.equals("ekle")) {
 				bag.BilgisayarOluştur();
 				break;
 			}
-			else if(kullanici.isFlag() && girdi.equals("kaldır")||girdi.equals("KALDIR")||girdi.equals("Kaldır")) {
+			else if(kullanici.getFlag() && girdi.equals("kaldır")) {
 				bag.BilgisayarKaldır();
 				break;
-			}
-			
+			}			
 			int kasaID = -1;
 			try {
 				kasaID = Integer.valueOf(girdi);

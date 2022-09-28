@@ -449,8 +449,8 @@ public class baglanti {
 			e.printStackTrace();
 		}
 	}
-
-	public void calisanlariGetir() {
+//Kullanıcı işlemleri
+	public void TablodakiKullanıcılarıYazdır() {
 		sorgu = "SELECT * FROM `users`" ;
 		try {
 			statement = con.createStatement(); // SQL üzerinde sorgu yapabilmek için statement oluşturuyoruz
@@ -458,14 +458,65 @@ public class baglanti {
 			while(result.next()) { // result set de dolaşmak için 
 				int id = result.getInt("id"); // result set içindeki istenilen çekmek için tipini get ile alıp içine hangi sütun olduğunu yazıyoruz
 				String ad = result.getString("name");
-				String sifre = result.getString("password");
-				String pozisyon = result.getString("flag");
-				System.out.println("Ad " + ad + " Sifre " + sifre + " ID " + id + " Pozisyon " + pozisyon);
+				System.out.println("Kullanıcın Id si : " + id + " Adı : " + ad);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-}
+	
+	public ArrayList KullanıcılarıGetir() {
+		sorgu = "SELECT * FROM `users`" ;
+		ArrayList array = new ArrayList();
+		try {
+			statement = con.createStatement(); // SQL üzerinde sorgu yapabilmek için statement oluşturuyoruz
+			ResultSet result = statement.executeQuery(sorgu); // oluşturduğumuz statement ile tabloya bir querry yolluyoruz geri dönütü resultSet olarak kaydediyoruz
+			while(result.next()) { // result set de dolaşmak için 
+				int id = result.getInt("id"); // result set içindeki istenilen çekmek için tipini get ile alıp içine hangi sütun olduğunu yazıyoruz
+				String ad = result.getString("name");
+				String sifre = result.getString("password");
+				boolean yetki = result.getBoolean("flag");
+				kullanici kullanıcı = new kullanici(ad , sifre , yetki);
+				array.add(kullanıcı);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array;
+	}
+	
+
+	public void KullanıcıKaldır() {
+		TablodakiKullanıcılarıYazdır();
+		System.out.println("****************************************************************************************************");
+		System.out.println("Kaldırmak istediğiniz kullanıcının ID sini giriniz");
+		int id = scan.nextInt();
+		try {
+			String sorgu = "DELETE FROM `users` WHERE ID="+id;
+			statement = con.createStatement();
+			statement.executeUpdate(sorgu);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void KullanıcıEkle() {
+		System.out.println("Yeni kullanıcı adını giriniz : ");
+		String kullaniciAdi = scan.nextLine();
+		System.out.println("Yeni kullanıcı şifresini giriniz :");
+		String kullaniciSifresi = scan.nextLine();
+		kullanici yeniKullanıcı = new kullanici(kullaniciAdi , kullaniciSifresi);
+		sorgu = "Insert into users (name , password , flag) Values ("+"'"+yeniKullanıcı.getIsim()+"',"+"'"+yeniKullanıcı.getSifre()+"',"+"'0')";
+		try {
+			statement = con.createStatement();
+			statement.executeUpdate(sorgu);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	}
  

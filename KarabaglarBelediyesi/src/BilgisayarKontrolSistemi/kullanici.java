@@ -3,13 +3,24 @@ package BilgisayarKontrolSistemi;
 public class kullanici {
 	String isim , sifre;
 	boolean flag;
+	
+	public kullanici(String isim, String sifre) {
+		this.isim = isim;
+		this.sifre = sifre;
+	}
+	
+	public kullanici(String isim, String sifre , boolean flag) {
+		this.isim = isim;
+		this.sifre = sifre;
+		this.flag = flag;
+	}
 
-	public boolean isFlag() {
+	public boolean getFlag() {
 		return flag;
 	}
 
 	public void setFlag(boolean flag) {
-		this.flag = flag;
+		this.flag = false;
 	}
 
 	public String getIsim() {
