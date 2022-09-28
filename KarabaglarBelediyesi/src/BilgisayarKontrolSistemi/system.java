@@ -14,66 +14,41 @@ public class system {
 
 	public static void main(String[] args) {
 		
+		
+	}
+	
+	public static kullanici  GirisIslemi(String kullaniciAdi , String kullaniciSifresi) {
 		baglanti bag = new baglanti();
 		ArrayList arr = new ArrayList();
-
-
-		
-		
 		boolean flag = true ;
 		boolean ifFlag= true;
-		while (flag) {
-			System.out.println("Karabağlar Belediyesi Bilgi İşlem Yazılımına Hoş Geldiniz ...\n"
-					+ "Kullanıcı Adınızı Giriniz : ");
-			String kullaniciAdi = scan.next();
-			System.out.println("Şifrenizi Giriniz : ");
-			String sifre = scan.next();
+		boolean bool = false;
+//			System.out.println("Karabağlar Belediyesi Bilgi İşlem Yazılımına Hoş Geldiniz ...\n"
+//					+ "Kullanıcı Adınızı Giriniz : ");
+//			String kullaniciAdi = scan.next();
+//			System.out.println("Şifrenizi Giriniz : ");
+//			String sifre = scan.next();
 			ArrayList<kullanici> userArray = bag.KullanıcılarıGetir();
 			for (int i = 0 ; i < userArray.size() ; i++) {
 //Normal kullanıcı girişi
-			if(userArray.get(i).getIsim().equals(kullaniciAdi) && userArray.get(i).getSifre().equals(sifre) && userArray.get(i).getFlag()) {
+			if(userArray.get(i).getIsim().equals(kullaniciAdi) && userArray.get(i).getSifre().equals(kullaniciSifresi) && userArray.get(i).getFlag()) {
 				System.out.println("Sisteme Hoş geldiniz");
 //Giriş yapan kullanıcıya göre çıktı farklı olacağı için kullanıcı objesini "KullaniciPaneli" ne yolluyoruz
-				KullaniciPaneli(userArray.get(i),bag);
-				ifFlag = false;
+				//KullaniciPaneli(userArray.get(i),bag);
+				return userArray.get(i);
 			}
 //Admin girişi
-			else if(userArray.get(i).getIsim().equals(kullaniciAdi) && userArray.get(i).getSifre().equals(sifre)) {
+			else if(userArray.get(i).getIsim().equals(kullaniciAdi) && userArray.get(i).getSifre().equals(kullaniciSifresi)) {
 				System.out.println("Sisteme Hoş geldiniz");
 //Giriş yapan kullanıcıya göre çıktı farklı olacağı için kullanıcı objesini "KullaniciPaneli" ne yolluyoruz
-				KullaniciPaneli(userArray.get(i),bag);	
-				ifFlag = false;
+				//KullaniciPaneli(userArray.get(i),bag);
+				return userArray.get(i);
 				}
-			else {
-				ifFlag = true;
-			}
-			}
-//Yanlış isim veya şifre kullanımı
-			if(ifFlag){
-				System.out.println("Girdiğiniz kullanıcı adı veya şifre yanlış\n"
-						+ "1- Tekrar denemek için\n"
-						+ "2- Çıkış yapmak için");
-				int input = scan.nextInt();
-				boolean tekrarFlag = true;
-				while (tekrarFlag) {
-					if (input == 1) {
-						tekrarFlag = false;
-						break;
-					}
-					if(input == 2) {
-						System.out.println("Sistemden çıkış yapılıyor");
-						tekrarFlag = false;
-						flag = false;
-						break;
-					}
-					
-					if(input != 1 || input != 2) {
-						System.out.println("Lütfen geçerli bir seçeneği kullanınız");
-					}
-				}
-			}
+		}
+			return null;
+
 		}	
-	}
+	
 	
 	public static void KullaniciPaneli(kullanici kullanici, baglanti bag) {
 		Scanner scan = new Scanner(System.in);
@@ -170,15 +145,12 @@ public class system {
 			
 // Tablodan alınan ID lerin kaydedildiği array in içinde girilen değerin olup olmadığı sorgulanıyor
 			if(array.contains(kasaID)){ 
-				System.out.println("1- program ekle kaldır\n"
-						+ "2- parça ekle kaldır");
+				System.out.println("\n"
+						+ "1- parça ekle kaldır");
 				System.out.println("0- Çıkış yapıp giriş paneline dönmek için");
 				int input = scan.nextInt();
 				switch(input) {
 				case 1:
-					
-					break;
-				case 2:
 					KasayaParcaEkle(bag , kasaID);
 					break;
 				case 0 :

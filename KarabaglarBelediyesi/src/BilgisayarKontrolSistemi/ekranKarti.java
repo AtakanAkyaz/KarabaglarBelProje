@@ -2,7 +2,7 @@ package BilgisayarKontrolSistemi;
 
 public class ekranKarti extends parcalar{
 
-// bellek tipi (false = harici ) / (true = dahili) 
+// bellek tipi (0 = harici ) / (1 = dahili) 
 	int bellekBoyutu , bellekTipi;
 	public ekranKarti() {
 		
