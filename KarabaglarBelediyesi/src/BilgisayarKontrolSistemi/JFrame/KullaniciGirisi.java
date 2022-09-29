@@ -82,10 +82,10 @@ public class KullaniciGirisi extends JFrame {
 					TabloyaIslemciEkle.main(null, bag);
 				}
 				else if(girdi.equals("RAM")) {
-					
+					TabloyaRAMEkle.main(null, bag);
 				}
 				else if(girdi.equals("Saklama Alanı")) {
-					
+					TabloyaSaklamaAlaniEkle.main(null, bag);
 				}
 			}
 		});
@@ -97,6 +97,7 @@ public class KullaniciGirisi extends JFrame {
 		JButton KasaIslemleriButonu = new JButton("Kasa İşlemleri");
 		KasaIslemleriButonu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				KasaIslemleri.main(null, bag);
 			}
 		});
 		KasaIslemleriButonu.setFont(new Font("Tahoma", Font.BOLD, 13));

@@ -79,7 +79,6 @@ public class Giris extends JFrame {
 				}
 				
 				
-				
 			}
 		});
 		

@@ -8,6 +8,10 @@ public class kasa {
 	public kasa(int ID) {
 		this.ID=ID;
 	}
+	public kasa(int ID,int seriNo) {
+		this.ID=ID;
+		this.seriNumarası = seriNo;
+	}
 	
 	public kasa(int ID , parcalar anaKart, parcalar ekranKari , parcalar gucUnitesi, parcalar islemci, parcalar ram, parcalar saklamaAlani , int seriNumarası) {
 		this.ID = ID;

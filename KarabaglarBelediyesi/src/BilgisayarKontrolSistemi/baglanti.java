@@ -135,8 +135,9 @@ public class baglanti {
 			while(result.next()) { // result set de dolaşmak için 
 				int bilgisayarID = result.getInt("ID"); // result set içindeki istenilen çekmek için tipini get ile alıp içine hangi sütun olduğunu yazıyoruz
 				BigDecimal bilgisayarSeriNo = result.getBigDecimal("SerialNumber");
-				System.out.println("Bilgisayarın ID si: " + bilgisayarID + ". Bilgisayarın seri numarası: " + bilgisayarSeriNo);
-				kasa kasa = new kasa(bilgisayarID);
+				int yeniBilgisayarSeriNo = bilgisayarSeriNo.intValue();
+//				System.out.println("Bilgisayarın ID si: " + bilgisayarID + ". Bilgisayarın seri numarası: " + bilgisayarSeriNo);
+				kasa kasa = new kasa(bilgisayarID , yeniBilgisayarSeriNo);
 				array.add(kasa);
 			}
 		} catch (SQLException e) {
